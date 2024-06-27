@@ -1,0 +1,406 @@
+@import "colors";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.my-soul-regular {
+  font-family: "My Soul", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.alex-brush-regular {
+  font-family: "Alex Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.main {
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.35s ease-in-out;
+  background-color: $bgcolor;
+  margin-left: 80px;
+}
+
+.main.expand {
+  margin-left: 250px;
+}
+
+#sidebar {
+  width: 80px;
+  min-width: 80px;
+  z-index: 1000;
+  height: 100vh;
+  transition: all 0.25s ease-in-out;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  
+}
+
+#sidebar.expand {
+  width: 260px;
+  min-width: 260px;
+}
+
+.toggle-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 1.5rem;
+
+  img {
+    color: $blackColor;
+  }
+}
+
+.sidebar-logo {
+  margin: auto 0;
+
+  a {
+    color: #000000;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+  display: none;
+}
+
+.sidebar-nav {
+  padding: 1.5rem 1rem;
+  flex: 1 1 auto;
+}
+
+a.sidebar-link {
+  padding: 0.625rem 1.625rem;
+  color: $darkgreycolor;
+  display: block;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+a.sidebar-link:not(.active) :hover {
+  background-color: rgba(131, 118, 118, 0.075);
+}
+
+.sidebar-link.active {
+    background-color: $basecolor;
+    color: white;
+    /* Add any other styles you want for the active link */
+  }
+
+.sidebar-item {
+  position: relative;
+  a{
+    border-radius: 10px;
+  }
+}
+
+.dashboard-header {
+  // margin: 4rem auto 0 auto;
+
+  margin-top: 4rem;
+
+  .card-header {
+    height: 119px;
+    width: 190px;
+    background-color: white;
+    margin: 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 10px;
+
+    padding-top: 12px;
+    padding-left: 15px;
+
+    .img-bg {
+      background-color: $basecolor;
+      height: 25px;
+      width: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+    }
+
+    p.heading {
+      color: $lightgreycolor;
+      font-weight: 500;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    p.value {
+      color: $blackColor;
+      font-weight: 600;
+      
+      font-size: 18px;
+    }
+  }
+}
+
+//Dashboard Main page
+
+
+.dashboard-main {
+  margin-top: 4rem;
+    padding: 2%;
+  
+  
+  background-color: white;
+  margin: 5px 3px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border-radius: 10px;
+
+  .input-text{
+    font-size: 12px;
+    font-size: max(16px, 1em);
+    font-family: "Poppins", sans-serif;
+    padding: 0.25em 0.5em;
+    background-color: #f7f4f4;
+    
+    border: 1.5px solid white; 
+   
+    
+    border-radius: 5px;
+    background-position: 10px center; 
+    outline: none;
+    background-repeat: no-repeat;
+
+
+        background-image: url('../Images/Search.png');
+        padding-left: 40px;
+        height: 38px;
+        width: 15.02vw!important;
+        
+   
+
+}
+
+
+ .nav-items{
+    display: flex;
+    gap: 10px; /* Adjust the gap between the paragraph elements */
+    a{
+        text-decoration: none;
+        color : $textblack;
+    }
+
+    a.active{
+        color: $primarygreen;
+    }
+
+    input.switch:checked{
+      background-color: $basecolor;
+    }
+
+ }
+
+
+ table{
+ 
+    thead{
+        
+        td{
+            color: $lightgreycolor;
+        }
+    }
+
+    tbody{
+        
+        tr{
+
+            td{
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            &:last-child td{
+                border-bottom: none;
+            } 
+
+        }
+
+        .hover-bg:hover{
+          td{background-color: #f5f5f5;}
+          
+        }
+
+
+    }
+
+    tfoot{
+
+        td{
+            border-bottom: none;
+            color: $lightgreycolor;
+
+            span{
+
+                color: black;
+                height: 25px;
+                width: 25px;
+                background-color: #F5F5F5;
+                border-radius: 5px;
+                text-align: center;
+                padding-top: 3px;
+                padding-left: 8px;
+                margin: 5px;
+
+            }
+
+        }
+
+    }
+
+
+ }
+
+ table.Detail{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+
+
+
+}
+
+
+.nav-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @each $type, $bcolor, $fcolor in (danger, #FAF0F3, #D12953), (success, #E1FCEF, #14804A) {
+    .#{$type} {
+        background-color: $bcolor;
+        color: $fcolor;
+        text-align: center;
+        border-radius: 8px;
+        padding: 0.5%;
+        font-size: 12px;
+        width: 70px;
+    }
+}
+
+.return-btn{
+
+  background-color: $basecolor;
+  color: white;
+  font-size: 12px;
+  height: 30px;
+
+
+}
+
+.return-btn:hover{
+  background-color: $basecolor;
+  color: white;
+}
+
+.stock-input {
+  display: inline-flex;
+  align-items: center;
+  
+  overflow: hidden;
+}
+
+.stock-btn {
+  background-color: $basecolor;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+  margin: 3px;
+}
+
+.stock-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.stock-input-field {
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 0;
+  /* Disable increment/decrement arrows */
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.stock-input-field::-webkit-inner-spin-button,
+.stock-input-field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
