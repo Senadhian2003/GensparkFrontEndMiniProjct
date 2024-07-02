@@ -11,7 +11,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-     <link rel="stylesheet" href="../../Assets/Admin/Css/Admin.css" />
+    <link rel="stylesheet" href="../../Assets/Admin/Css/Admin.css" />
   </head>
   <body>
     <div class="wrapper d-flex">
@@ -97,160 +97,157 @@
                 </div>
               </div>
 
-              <div>
+            </div>
 
+            <div>
 
+              <div
+                class="dashboard-main"
+                style="margin-left: auto; margin-right: auto; margin-top: 50px"
+              >
                 <div
-                  class="dashboard-main"
-                  style="
-                    margin-left: auto;
-                    margin-right: auto;
-                    margin-top: 50px;
-                  "
+                  class="nav-table d-flex justify-content-between align-items-center p-3 poppins-medium"
                 >
-                  <div
-                    class="nav-table d-flex justify-content-between align-items-center p-3 poppins-medium"
+                  <div class="nav-items">
+                    <a href="Book.html" class="p-2 nav-link active">Books</a>
+                    <a href="SaleStock.html" class="p-2 nav-link">Sale Stock</a>
+                    <a href="RentStock.html" class="p-2 nav-link">Rent Stock</a>
+                  </div>
+                  <div class="nav-items">
+                    <input
+                      type="text"
+                      class="form-control input-text"
+                      placeholder="Search..."
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                    <a href="./AddBook.html"><button class="btn return-btn" style="margin-top: 3px">
+                      + Add Book
+                    </button>
+                  </a>
+                  </div>
+                </div>
+
+                <div class="container-fluid">
+                  <table
+                    id="customer-detail"
+                    class="table poppins-medium"
+                    style="font-size: 14px"
                   >
-                    <div class="nav-items">
-                      <a href="Book.html" class="p-2 nav-link active">Books</a>
-                      <a href="SaleStock.html" class="p-2 nav-link ">Sale Stock</a>
-                      <a href="RentStock.html" class="p-2 nav-link ">Rent Stock</a>
-                    </div>
-                    <div class="nav-items">
-                      <input
-                        type="text"
-                        class="form-control input-text"
-                        placeholder="Search..."
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                      />
-                      <button class="btn return-btn" style="margin-top: 3px">
-                        + Add Book
-                      </button>
-                    </div>
-                  </div>
+                    <thead>
+                      <tr>
+                        <td scope="col">Book Id</td>
+                        <td scope="col">Title</td>
+                        <td scope="col" class="">Category</td>
+                        <td scope="col" class="">Author</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        data-href="./UserRegularCartDetail.html"
+                        data-id="1"
+                        class="hover-bg"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse1"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        <td>1</td>
 
-                  <div class="container-fluid">
-                    <table
-                      id="customer-detail"
-                      class="table poppins-medium"
-                      style="font-size: 14px"
-                    >
-                      <thead>
-                        <tr>
-                          <td scope="col">Book Id</td>
-                          <td scope="col">Title</td>
-                          <td scope="col" class="">Category</td>
-                          <td scope="col" class="">Author</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <td>1</td>
+                        <td>Spiderman</td>
+                        <td class="">Comic</td>
+                        <td class="">Stan Lee</td>
+                      </tr>
 
-                          <td>Spiderman</td>
-                          <td class="">Comic</td>
-                          <td class="">Stan Lee</td>
-                        </tr>
+                      <tr
+                        data-href="./UserRegularCartDetail.html"
+                        data-id="1"
+                        class="hover-bg"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse1"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        <td>1</td>
 
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <td>1</td>
+                        <td>Spiderman</td>
+                        <td class="">Comic</td>
+                        <td class="">Stan Lee</td>
+                      </tr>
 
-                          <td>Spiderman</td>
-                          <td class="">Comic</td>
-                          <td class="">Stan Lee</td>
-                        </tr>
+                      <tr
+                        data-href="./UserRegularCartDetail.html"
+                        data-id="1"
+                        class="hover-bg"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse1"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        <td>1</td>
 
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <td>1</td>
+                        <td>Spiderman</td>
+                        <td class="">Comic</td>
+                        <td class="">Stan Lee</td>
+                      </tr>
 
-                          <td>Spiderman</td>
-                          <td class="">Comic</td>
-                          <td class="">Stan Lee</td>
-                        </tr>
+                      <tr
+                        data-href="./UserRegularCartDetail.html"
+                        data-id="1"
+                        class="hover-bg"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse1"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        <td>1</td>
 
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <td>1</td>
+                        <td>Spiderman</td>
+                        <td class="">Comic</td>
+                        <td class="">Stan Lee</td>
+                      </tr>
 
-                          <td>Spiderman</td>
-                          <td class="">Comic</td>
-                          <td class="">Stan Lee</td>
-                        </tr>
+                      <tr
+                        data-href="./UserRegularCartDetail.html"
+                        data-id="1"
+                        class="hover-bg"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse1"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        <td>1</td>
 
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <td>1</td>
+                        <td>Spiderman</td>
+                        <td class="">Comic</td>
+                        <td class="">Stan Lee</td>
+                      </tr>
+                    </tbody>
 
-                          <td>Spiderman</td>
-                          <td class="">Comic</td>
-                          <td class="">Stan Lee</td>
-                        </tr>
-                      </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="1" style="margin-left: 5px">
+                          <div style="margin-left: 40px">1-10 of 97</div>
+                        </td>
 
-                      <tfoot>
-                        <tr>
-                          <td colspan="1" style="margin-left: 5px">
-                            <div style="margin-left: 40px">1-10 of 97</div>
-                          </td>
+                        <td colspan="3" style="text-align: end">
+                          <div
+                            class="d-flex justify-content-end"
+                            style="margin-right: 40px"
+                          >
+                            <span> < </span>
 
-                          <td colspan="3" style="text-align: end">
-                            <div
-                              class="d-flex justify-content-end"
-                              style="margin-right: 40px"
-                            >
-                              <span> < </span>
+                            <span class="pagination"> 1 </span>
+                            <span class="pagination"> 2 </span>
+                            <span class="pagination"> 3 </span>
+                            <span class="pagination"> 4 </span>
 
-                              <span class="pagination"> 1 </span>
-                              <span class="pagination"> 2 </span>
-                              <span class="pagination"> 3 </span>
-                              <span class="pagination"> 4 </span>
-
-                              <span> > </span>
-                            </div>
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
+                            <span> > </span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
                 </div>
               </div>
             </div>

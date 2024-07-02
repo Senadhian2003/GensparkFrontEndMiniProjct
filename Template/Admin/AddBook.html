@@ -1,0 +1,391 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Athena</title>
+
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../Assets/Admin/Css/Admin.css" />
+  </head>
+  <body>
+    <div class="wrapper d-flex">
+      <aside id="sidebar">
+        <div class="d-flex">
+          <button class="toggle-btn" type="button">
+            <!-- <i class="lni lni-grid-alt"></i> -->
+            <img
+              height="55px"
+              width="55px"
+              src="../../Assets/Admin/Images/Athena.avif"
+              alt=""
+            />
+          </button>
+          <div class="sidebar-logo poppins-semibold">
+            <a class="" style="color: black; font-size: 26px" href="#"
+              >Athena</a
+            >
+          </div>
+        </div>
+
+        <ul class="sidebar-nav poppins-medium">
+          <li class="sidebar-item">
+            <a href="./ReturnPending.html" class="sidebar-link"
+              ><i class="lni lni-dashboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="./Customer.html" class="sidebar-link"
+              ><i class="lni lni-users"></i>
+              <span>Customers</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="./Book.html" class="sidebar-link active"
+              ><i class="lni lni-book"></i>
+              <span>Books</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a href="./BuySaleStock.html" class="sidebar-link">
+              <i class="lni lni-cloud-sync"></i> <span>Buy Stock</span></a
+            >
+          </li>
+
+          <li class="sidebar-item">
+            <a href="./Purchase.html" class="sidebar-link"
+              ><i class="lni lni-support"></i> <span>Purchase History</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="main p-4">
+        <div class="container">
+          <div>
+            <h1>Welcome Admin 🖐,</h1>
+          </div>
+
+          <div class="dashboard-header" style="margin-top: 10px">
+            <div
+              class="row d-flex"
+              style="margin-left: auto; margin-right: auto"
+            ></div>
+
+            <div>
+              <div
+                class="dashboard-main"
+                style="margin-left: auto; margin-right: auto"
+              >
+                <div
+                  class="nav-table d-flex justify-content-between align-items-center p-3 poppins-medium"
+                >
+                  <div class="nav-items">
+                    <a href="Book.html" class="p-2 nav-link active"
+                      >Add new Book</a
+                    >
+                  </div>
+                </div>
+
+                <div class="container-fluid">
+                  <form class="mt-4">
+                    <div class="mb-3">
+                      <label for="bookTitle" class="form-label"
+                        >Book Title</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        onblur="validateTitle()"
+                        id="bookTitle"
+                        required
+                      />
+                      <small id="titleNameHelp"></small>
+                    </div>
+                    <div class="mb-3">
+                      <label for="bookDescription" class="form-label"
+                        >Description</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="bookDescription"
+                        onblur="validateDescription()"
+                        rows="3"
+                        required
+                      ></textarea>
+                      <small id="DescriptionNameHelp"></small>
+                    </div>
+                    <div class="mb-3">
+                      <label for="bookCategory" class="form-label"
+                        >Category</label
+                      >
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          list="categoryList"
+                          onblur="validateCategory()"
+                          id="categoryName"
+                          required
+                        />
+                        <datalist id="categoryList"> </datalist>
+                      </div>
+                      <small id="CategoryNameHelp"></small>
+                    </div>
+                    <div class="mb-3">
+                      <label for="authorName" class="form-label"
+                        >Author Name</label
+                      >
+                      <div class="input-group">
+                        <select class="form-select" id="authorList" onblur="validateAuthorSelect()" required>
+                          <option value="" selected disabled>
+                            Select an author
+                          </option>
+                        </select>
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#addAuthorModal"
+                        >
+                          Add Author
+                        </button>
+                      </div>
+                      <small id="authorSelectHelp"></small>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="publisherName" class="form-label"
+                        >Publisher Name</label
+                      >
+                      <div class="input-group">
+                        <select class="form-select" id="publisherList" onblur="validatePublisherSelect()" required>
+                          <option value="" selected disabled>
+                            Select a Publisher
+                          </option>
+                        </select>
+                        <button
+                          class="btn btn-outline-secondary"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#addPublisherModal"
+                        >
+                          Add Publisher
+                        </button>
+                      </div>
+                      <small id="publisherSelectHelp"></small>
+                    </div>
+
+                    <button type="submit" class="btn return-btn">Submit</button>
+                  </form>
+
+                  <!-- Add Author Modal -->
+                  <div
+                    class="modal fade"
+                    id="addAuthorModal"
+                    tabindex="-1"
+                    aria-labelledby="addAuthorModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addAuthorModalLabel">
+                            Add New Author
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="newAuthorName" class="form-label"
+                                >Author Name</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="newAuthorName"
+                                onblur="validateName()"
+                                required
+                              />
+                              <small id="authorNameHelp"></small>
+                            </div>
+                            <div class="mb-3">
+                              <label for="authorPhone" class="form-label"
+                                >Phone Number</label
+                              >
+                              <input
+                                type="tel"
+                                class="form-control"
+                                id="authorPhone"
+                                onblur="validatePhoneNumber()"
+                                required
+                              />
+                              <small id="phoneHelp"></small>
+                            </div>
+                            <div class="mb-3">
+                              <label for="authorAddress" class="form-label"
+                                >Address</label
+                              >
+                              <textarea
+                                class="form-control"
+                                id="authorAddress"
+                                rows="3"
+                                onblur="validateAddress()"
+                                required
+                              ></textarea>
+                              <small id="authorAddressHelp"></small>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button
+                            id="AddAuhtorBtn"
+                            type="button"
+                            class="btn btn-primary"
+                          >
+                            Save Author
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Add Publisher Modal -->
+                  <div
+                    class="modal fade"
+                    id="addPublisherModal"
+                    tabindex="-1"
+                    aria-labelledby="addAuthorModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addAuthorModalLabel">
+                            Add New Publisher
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="newPublisherName" class="form-label"
+                                >Publisher Name</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="newPublisherName"
+                                onblur="validatePublisherName()"
+                                required
+                              />
+                              <small id="publisherNameHelp"></small>
+                            </div>
+                            <div class="mb-3">
+                              <label for="publisherCity" class="form-label"
+                                >City</label
+                              >
+                              <input
+                                type="tel"
+                                class="form-control"
+                                id="publisherCity"
+                                onblur="validateCity()"
+                                required
+                              />
+                              <small id="publisherCityHelp"></small>
+                            </div>
+                            
+
+                            <div class="mb-3">
+                              <label for="publisherState" class="form-label"
+                                >State</label
+                              >
+                              <input
+                                type="tel"
+                                class="form-control"
+                                id="publisherState"
+                                onblur="validateState()"
+                                required
+                              />
+                              <small id="publisherStateHelp"></small>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="publisherCountry" class="form-label"
+                                >Country</label
+                              >
+                              <input
+                                type="tel"
+                                class="form-control"
+                                id="publisherCountry"
+                                onblur="validateCountry()"
+                                required
+                              />
+                              <small id="publisherCountryHelp"></small>
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button
+                            id="AddPublisherBtn"
+                            type="button"
+                            class="btn btn-primary"
+                          >
+                            Save Publisher
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../Assets/Admin/Javascript/sidebar.js"></script>
+    <script src="../../Assets/Admin/Javascript/AddNewBook.js"></script>
+  </body>
+</html>
