@@ -272,6 +272,12 @@ div.features{
         color: $desc;
       }
 
+      .card-category {
+        font-size: 14px;
+        color: $desc;
+        font-weight: 600;
+      }
+
       .btn-primary {
         background-color: $primary;
         border-color: $primary;
@@ -394,7 +400,12 @@ div.features{
       font-size: 32px;
       color: $desc;
       font-weight: 300;
-  
+    }
+
+    p.category{
+      font-size: 18px;
+      color: $desc;
+      font-weight: 400;
     }
   
     p.content-heading{

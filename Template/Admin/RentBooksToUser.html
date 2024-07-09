@@ -49,7 +49,7 @@
           </li>
 
           <li class="sidebar-item">
-            <a href="./Book.html" class="sidebar-link "
+            <a href="./Book.html" class="sidebar-link"
               ><i class="lni lni-book"></i>
               <span>Books</span>
             </a>
@@ -77,29 +77,35 @@
 
           <div class="dashboard-header">
             
+            
 
             <div>
               <div
                 class="dashboard-main"
-                style="margin-left: auto; margin-right: auto; margin-top: 70px"
+                style="margin-left: auto; margin-right: auto; margin-top: 50px"
               >
                 <div
                   class="nav-table d-flex justify-content-between align-items-center p-3 poppins-medium"
                 >
                   <div class="nav-items">
-                    <a  style="cursor: pointer;" data-href="./UserRegularCartDetail.html" class="p-2 nav-link "
-                    >Regular Cart</a
-                  >
-                  <a  style="cursor: pointer;" data-href="./UserEliteCartDetail.html" class="p-2 nav-link active">Elite Cart</a>
-                  <a  style="cursor: pointer;" data-href="./UserRentDetail.html" class="p-2 nav-link "
-                    >Rent</a
-                  >
-                  <a style="cursor: pointer;"  data-href="./UserFineDetail.html" class="p-2 nav-link">Fine</a>
-                  <a style="cursor: pointer;" data-href="./UserFineDetail.html" class="p-2 nav-link">Rent a book</a>
-                </div>
+                    <a style="cursor: pointer;" data-href="./UserRegularCartDetail.html" class="p-2 nav-link "
+                      >Regular Cart</a
+                    >
+                    <a style="cursor: pointer;" data-href="./UserEliteCartDetail.html" class="p-2 nav-link">Elite Cart</a>
+                    <a style="cursor: pointer;" data-href="./UserRentDetail.html" class="p-2 nav-link  "
+                      >Rent</a
+                    >
+                    <a style="cursor: pointer;" data-href="./UserFineDetail.html" class="p-2 nav-link">Fine</a>
+                    <a style="cursor: pointer;" data-href="./RentBooksToUser.html" class="p-2 nav-link active">Rent a book</a>
+                  </div>
                   <div class="nav-items">
                     
-
+                    <div class="input-group">
+                      <select class="form-select" id="CartType" >
+                        <option value="Normal Cart" selected >Normal Cart</option>
+                        <option value="Super  Cart" >Super  Cart</option>
+                      </select>
+                    </div>
                     <input
                       type="text"
                       class="form-control input-text"
@@ -111,94 +117,23 @@
                 </div>
 
                 <div class="container-fluid">
-                  <table
-                    id="table-detail"
+                    <table
+                    id="customer-detail"
                     class="table poppins-medium"
                     style="font-size: 14px"
                   >
                     <thead>
                       <tr>
-                        <td scope="col">Book ID</td>
-                        <td scope="col">Book name</td>
-                        <td scope="col" class="text-center">Rent Id</td>
-                        <td scope="col" class="text-center">Due Date</td>
-                        <td scope="col" class="text-center">Return</td>
-                        
+                        <td scope="col">Book Id</td>
+                        <td scope="col">Title</td>
+                        <td scope="col" class="">Category</td>
+                       
+                        <td scope="col" class="text-center">Stock</td>
+                        <td scope="col" class="text-center">Rent</td>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-                     
+                      
                     </tbody>
 
                     <tfoot>
@@ -206,21 +141,22 @@
                         <td colspan="2" style="margin-left: 5px">
                           <div style="margin-left: 40px">1-10 of 97</div>
                         </td>
-
-                        <td colspan="3" style="text-align: end">
-                          <div
-                            class="d-flex justify-content-end"
-                            style="margin-right: 40px"
-                          >
+                       
+                          
+                       
+                        <td colspan="3" >
+                         <div class=" d-flex justify-content-end">
+                          <button class="btn return-btn" style="margin-right: 5px; width: 70px;" id="submit-btn" onclick="submitData()">Rent</button>
+                          <div class="d-flex justify-content-end" style="margin-right: 40px">
                             <span> < </span>
-
                             <span class="pagination"> 1 </span>
                             <span class="pagination"> 2 </span>
                             <span class="pagination"> 3 </span>
                             <span class="pagination"> 4 </span>
-
                             <span> > </span>
                           </div>
+                          </div>
+                        </div>
                         </td>
                       </tr>
                     </tfoot>
@@ -239,6 +175,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../Assets/Admin/Javascript/sidebar.js"></script>
-    <script src="../../Assets/Admin/Javascript/EliteCart.js" ></script>
+    <script src="../../Assets/Admin/Javascript/RentBooksToUser.js" defer></script>
   </body>
 </html>

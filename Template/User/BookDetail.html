@@ -39,7 +39,7 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand d-flex" style="margin-top: 8px" href="#">
-            <img src="../../Assets/Images/Athena.avif" alt="Logo" />
+            <img src="../../Assets/User/Images/Athena.avif" alt="Logo" />
             <p
               class="poppins-semibold"
               style="margin-left: 10px; color: black; font-size: 26px"
@@ -63,20 +63,20 @@
             id="navbarNav"
             style="margin-left: 70px"
           >
-            <ul class="navbar-nav" style="font-size: 14px">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Purchase</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Order History</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Location</a>
-              </li>
-            </ul>
+          <ul class="navbar-nav" style="font-size: 14px">
+            <li class="nav-item">
+              <a class="nav-link active" href="./Books.html">Purchase</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./Cart.html">Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Order History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Location</a>
+            </li>
+          </ul>
           </div>
         </div>
       </nav>
@@ -96,7 +96,8 @@
 
           <div class="col-sm-7 col">
             <p class="title">Once Upon a time</p>
-            <p class="author">Martin smith</p>
+            <p class="category">Adventure</p>
+            <p class="author">Martin smith <span style="font-size: 14px;" class="publisher" ><small>published by orlando</small></span></p> 
             <div class="rating">
               <span class="rating-count" style="color: black">2.5</span>
               <span class="fa fa-star" id="1"></span>
@@ -121,18 +122,18 @@
 
             <div class="d-flex">
               <div class="stock-input">
-                <button class="stock-btn minus" id="1 SubQuantity">-</button>
+                <button class="stock-btn minus" id="SubQuantity">-</button>
                 <input
-                  id="1 Quantity"
+                  id="Quantity"
                   type="number"
                   class="stock-input-field"
                   value="0"
                   min="0"
                 />
-                <button class="stock-btn plus" id="1 AddQuantity">+</button>
+                <button class="stock-btn plus" id="AddQuantity">+</button>
               </div>
 
-              <button class="blue" style="margin-left: 24px">
+              <button class="blue" id="submit-btn" style="margin-left: 24px">
                 Add to Cart
               </button>
             </div>
@@ -146,7 +147,7 @@
         <div class="row">
           <div class="col-sm-5">
             <div class="aside-rating">
-              <div class="rating" style="font-size: 24px">
+              <div class="rating" id="splitRating" style="font-size: 24px">
                 <span class="rating-count" style="color: black">2.5</span>
                 <span class="fa fa-star" id="1"></span>
                 <span class="fa fa-star" id="2"></span>
@@ -156,6 +157,8 @@
                 <span style="font-size: 18px; color: black">(4)</span>
               </div>
 
+
+              <div id="feedback-progress">
               <div class="progress">
                 <div
                   class="progress-bar"
@@ -220,6 +223,7 @@
                   5%
                 </div>
               </div>
+              </div>
 
               <button class="btn btn-primary" style="width: 100%">
                 Give Feedback
@@ -230,7 +234,7 @@
           <div class="col-sm-7 col">
             <div class="feedbacks custom-scrollbar" style=" height: 85vh; overflow: scroll;">
               
-                <div class="container-fluid"  >
+                <div class="container-fluid" id="book-feedback" >
 
 
                     <div class="feedback" style="margin-top: 20px; margin-bottom: 70px;">
@@ -242,7 +246,7 @@
         
                             <div class="text" style="margin-top: 8px;">
                               <p class="user-name" >SpiderSena</p>
-                              <div class="rating" style="font-size: 14px;">
+                              <div class="rating"  style="font-size: 14px;">
                                 <span class="rating-count" style="color: black"
                                   >2.5</span
                                 >
@@ -405,59 +409,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const ratings = document.querySelectorAll(".rating");
-
-        ratings.forEach((ratingElement) => {
-          const rating = parseFloat(
-            ratingElement.querySelector(".rating-count").textContent
-          );
-          const stars = ratingElement.querySelectorAll(".fa-star");
-          const fullStars = Math.floor(rating);
-          const hasHalfStar = rating - fullStars >= 0.5;
-
-          for (let i = 0; i < stars.length; i++) {
-            if (i < fullStars) {
-              stars[i].classList.add("checked");
-            } else if (i === fullStars && hasHalfStar) {
-              stars[i].classList.add("checked", "fa-star-half-o");
-            } else {
-              stars[i].classList.add("fa-star-o");
-            }
-          }
-        });
-      });
-
-      const slider = document.getElementById("priceSlider");
-      const minInput = document.getElementById("minPrice");
-      const maxInput = document.getElementById("maxPrice");
-
-      noUiSlider.create(slider, {
-        start: [0, 10000],
-        connect: true,
-        range: {
-          min: 0,
-          max: 10000,
-        },
-        step: 1,
-      });
-
-      slider.noUiSlider.on("update", function (values, handle) {
-        const value = Math.round(values[handle]);
-        if (handle === 0) {
-          minInput.value = value;
-        } else {
-          maxInput.value = value;
-        }
-      });
-
-      function setSliderValues() {
-        slider.noUiSlider.set([minInput.value, maxInput.value]);
-      }
-
-      minInput.addEventListener("change", setSliderValues);
-      maxInput.addEventListener("change", setSliderValues);
-    </script>
+    <script src="../../Assets/User/Javascript/BookDetail.js"  ></script>
   </body>
 </html>

@@ -66,20 +66,20 @@
             id="navbarNav"
             style="margin-left: 70px"
           >
-            <ul class="navbar-nav" style="font-size: 14px">
-              <li class="nav-item">
-                <a class="nav-link " href="#">Purchase</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Order History</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Location</a>
-              </li>
-            </ul>
+          <ul class="navbar-nav" style="font-size: 14px">
+            <li class="nav-item">
+              <a class="nav-link " href="./Books.html">Purchase</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./Cart.html">Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Order History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Location</a>
+            </li>
+          </ul>
           </div>
         </div>
       </nav>
@@ -95,7 +95,7 @@
 
                 <div class="col-lg-8 col-md-12">
 
-                    <div class="cart-items">
+                    <div class="cart-items" id="cart-items">
 
                         <!-- 1st div -->
 
@@ -282,21 +282,28 @@
 
                         <div class="d-flex justify-content-between">
                             <p class="left-text">Subtotal</p>
-                            <p class="right-text">$68</p>
+                            <p class="right-text" id="sub-total">$68</p>
                         </div>
 
                         <div class="d-flex justify-content-between">
+                          <p class="left-text">Discount</p>
+                          <p class="right-text" id="discount">$15</p>
+                      </div>
+
+                        <div class="d-flex justify-content-between">
                             <p class="left-text">Delivery</p>
-                            <p class="right-text">$15</p>
+                            <p class="right-text" id="delivery">$15</p>
                         </div>
+
+                        
 
                         <hr>
                         <div class="d-flex justify-content-between">
                             <p class="left-text">Total</p>
-                            <p class="right-text">$83</p>
+                            <p class="right-text" id="final-total">$83</p>
                         </div>
 
-                        <button class="btn btn-primary" style="width: 100%">
+                        <button class="btn btn-primary" id="checkout-btn" style="width: 100%">
                             Checkout
                           </button>
 
@@ -342,6 +349,6 @@
       crossorigin="anonymous"
     ></script>
 
-    
+    <script src="../../Assets/User/Javascript/Cart.js"  ></script>
   </body>
 </html>

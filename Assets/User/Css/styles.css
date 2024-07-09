@@ -55,7 +55,7 @@ body {
 }
 
 .landing-page {
-  background-image: url("../../User/Images/HomeBackground.png");
+  background-image: url("../../Images/HomeBackground.png");
   background-position: top right;
   background-repeat: no-repeat;
   background-size: contain;
@@ -190,6 +190,11 @@ div.features .card-item p.content {
   font-size: 14px;
   color: #5E6282;
 }
+.view-books .books .book-card .card-category {
+  font-size: 14px;
+  color: #5E6282;
+  font-weight: 600;
+}
 .view-books .books .book-card .btn-primary {
   background-color: #4475F2;
   border-color: #4475F2;
@@ -263,6 +268,11 @@ div.features .card-item p.content {
   font-size: 32px;
   color: #5E6282;
   font-weight: 300;
+}
+.book-detail .detail p.category {
+  font-size: 18px;
+  color: #5E6282;
+  font-weight: 400;
 }
 .book-detail .detail p.content-heading {
   font-size: 18px;

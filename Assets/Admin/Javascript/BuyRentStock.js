@@ -1,12 +1,48 @@
 const bookTitles = ["Sherlock Holmes", "Ben 10", "Learning React", "Harry Potter", "The Great Gatsby", "Pride and Prejudice"];
 
-function populateDatalist(datalist) {
-  bookTitles.forEach(title => {
-    const option = document.createElement('option');
-    option.value = title;
-    datalist.appendChild(option);
-  });
+// Fetch data for select(Book names and id)
+let books = []
+let fetchBooks = ()=>{
+
+
+  fetch('http://localhost:5022/api/Book/ViewAllBookDetails',{
+    method : 'GET'
+  })
+  .then((res)=> res.json())
+  .then((data)=>{
+    console.log(data);
+
+    books = data
+    const select = document.getElementById('books-select')
+    books.forEach(book => {
+      
+      const option = document.createElement('option')
+      option.value = book.id
+      option.textContent = book.title
+      select.appendChild(option)
+    });
+
+
+  })
+
+
+
+
 }
+
+
+fetchBooks();
+
+
+// Add new Rows
+
+// function populateDatalist(datalist) {
+//   bookTitles.forEach(title => {
+//     const option = document.createElement('option');
+//     option.value = title;
+//     datalist.appendChild(option);
+//   });
+// }
 
 function updateTotal(row) {
   const priceInput = row.cells[2].children[0];
@@ -68,7 +104,7 @@ function addNewRow() {
 function handleRowClick(event) {
   const target = event.target;
 
-  if (target.matches('input')) {
+  if (target.matches('input') || target.matches('select')) {
     const row = target.closest('tr');
     const table = row.parentNode.parentNode;
     const lastRow = table.tBodies[0].lastElementChild;
@@ -79,6 +115,32 @@ function handleRowClick(event) {
   }
 }
 
+let sendDataToBackend = (items)=>{
+
+  
+  fetch('http://localhost:5022/api/Purchase/BuyBooksForLibrary',{
+    method : "POST",
+    headers : {
+      'Content-Type' : 'application/json'
+    },
+
+    body : JSON.stringify({
+      "type": "Rent",
+      "items": items
+    })
+
+  })
+  .then(res=>res.json())
+  .then((data)=>{
+    console.log(data)
+    alert("Stocks updated successfully")
+    location.reload()
+  })
+
+
+
+}
+
 function createObjectsFromRows() {
     const table = document.getElementById('buy-sale-stock');
     const rows = table.getElementsByTagName('tr');
@@ -86,39 +148,47 @@ function createObjectsFromRows() {
     // console.log(rows)
     for (let i = 1; i <= rows.length - 2; i++) { 
       const row = rows[i];
-      console.log(row)
-      const bookName = row.cells[1].children[0].value;
-      const price = parseFloat(row.cells[2].children[0].value);
+      // console.log(row)
+      const bookId = row.cells[1].children[0].value;
+      // const bookName = row.cells[1].children[0].textContent;
+      const pricePerBook = parseFloat(row.cells[2].children[0].value);
       const quantity = parseInt(row.cells[3].children[0].children[1].value);
       const total = parseFloat(row.cells[4].textContent);
 
-      if(!bookName || price==0 || !price || quantity==0 || !quantity){
+      if(!bookId || pricePerBook==0 || !pricePerBook || quantity==0 || !quantity){
         continue;
       }
   
-      const rowObject = { bookName, price, quantity, total };
+      const rowObject = { bookId,  pricePerBook, quantity};
       rowObjects.push(rowObject);
     //   console.log(rowObject)
+
     }
-  
+
+    // Send data to backend
+
+    sendDataToBackend(rowObjects)
     console.log(rowObjects);
+
   }
 
 
 window.addEventListener('DOMContentLoaded', () => {
   const datalist = document.getElementById('Titles');
-  populateDatalist(datalist);
+  // populateDatalist(datalist);
 
   const tableBody = document.querySelector('#buy-sale-stock tbody');
   tableBody.addEventListener('click', handleRowClick);
 
   // Add event listeners for the initial row
   const firstRow = tableBody.firstElementChild;
+  const TitleInput = firstRow.cells[1].children[0]
   const priceInput = firstRow.cells[2].children[0]
   const minusButton = firstRow.cells[3].children[0].children[0];
   const quantityInput = firstRow.cells[3].children[0].children[1];
   const plusButton = firstRow.cells[3].children[0].children[2];
 
+  TitleInput.addEventListener('change', handleInputChange);
   priceInput.addEventListener('input',handleInputChange)
   minusButton.addEventListener('click', handleInputChange);
   quantityInput.addEventListener('input', handleInputChange);
@@ -129,3 +199,11 @@ window.addEventListener('DOMContentLoaded', () => {
   buyStockButton.addEventListener('click', createObjectsFromRows);
 
 });
+
+
+
+// Buy books 
+
+
+
+

@@ -67,7 +67,7 @@
                   <a class="nav-link active" href="#">Purchase</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Cart</a>
+                  <a class="nav-link" href="./Cart.html">Cart</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Order History</a>
@@ -104,6 +104,16 @@
                 />
               </div>
 
+              <div class="mb-3 " style="margin-right: 10px;">
+               
+                <input
+                  type="text"
+                  class="form-control"
+                  id="searchInput"
+                  placeholder="Search by title or author"
+                />
+              </div>
+
               <div class="dropdown">
                 <button
                   class="btn btn-secondary dropdown-toggle"
@@ -129,7 +139,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id="book-cards">
             <!-- Repeat this card 4 times for demo -->
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
               <div class="card book-card">
@@ -167,6 +177,7 @@
                 />
                 <div class="card-body">
                   <h5 class="card-title">Princess is the cat</h5>
+                  <p class="card-category" style="margin-bottom: 5px">Adventure</p>
                   <p class="card-text" style="margin-bottom: 5px">Johanson</p>
                   <div class="rating">
                     <span class="rating-count" style="display: none">4</span>
@@ -288,15 +299,7 @@
             <div class="container">
               <form class="filter-form">
                 <!-- Search Bar -->
-                <div class="mb-3">
-                  <label for="searchInput" class="form-label">Search</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="searchInput"
-                    placeholder="Search by title or author"
-                  />
-                </div>
+                
 
                 <!-- Category Dropdown -->
                 <div class="mb-3">
@@ -444,59 +447,8 @@
     <!-- NoUISlider -->
     <script src="https://cdn.jsdelivr.net/npm/nouislider@14.6.3/distribute/nouislider.min.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const ratings = document.querySelectorAll(".rating");
+ 
 
-        ratings.forEach((ratingElement) => {
-          const rating = parseFloat(
-            ratingElement.querySelector(".rating-count").textContent
-          );
-          const stars = ratingElement.querySelectorAll(".fa-star");
-          const fullStars = Math.floor(rating);
-          const hasHalfStar = rating - fullStars >= 0.5;
-
-          for (let i = 0; i < stars.length; i++) {
-            if (i < fullStars) {
-              stars[i].classList.add("checked");
-            } else if (i === fullStars && hasHalfStar) {
-              stars[i].classList.add("checked", "fa-star-half-o");
-            } else {
-              stars[i].classList.add("fa-star-o");
-            }
-          }
-        });
-      });
-
-      const slider = document.getElementById("priceSlider");
-      const minInput = document.getElementById("minPrice");
-      const maxInput = document.getElementById("maxPrice");
-
-      noUiSlider.create(slider, {
-        start: [0, 10000],
-        connect: true,
-        range: {
-          min: 0,
-          max: 10000,
-        },
-        step: 1,
-      });
-
-      slider.noUiSlider.on("update", function (values, handle) {
-        const value = Math.round(values[handle]);
-        if (handle === 0) {
-          minInput.value = value;
-        } else {
-          maxInput.value = value;
-        }
-      });
-
-      function setSliderValues() {
-        slider.noUiSlider.set([minInput.value, maxInput.value]);
-      }
-
-      minInput.addEventListener("change", setSliderValues);
-      maxInput.addEventListener("change", setSliderValues);
-    </script>
+    <script src="../../Assets/User/Javascript/Books.js"  ></script>
   </body>
 </html>

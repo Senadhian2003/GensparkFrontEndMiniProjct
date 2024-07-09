@@ -124,6 +124,29 @@
                       ></textarea>
                       <small id="DescriptionNameHelp"></small>
                     </div>
+
+
+
+                    <div class="mb-3">
+                      <label for="bookCategory" class="form-label"
+                        >Image Upload</label
+                      >
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          list="categoryList"
+                          type="file"
+                          id="bookImg"
+                          required
+                        />
+                      
+                      </div>
+                      <small id="ImageHelp"></small>
+                    </div>
+
+
+
+
                     <div class="mb-3">
                       <label for="bookCategory" class="form-label"
                         >Category</label
@@ -184,7 +207,7 @@
                       <small id="publisherSelectHelp"></small>
                     </div>
 
-                    <button type="submit" class="btn return-btn">Submit</button>
+                    <button type="button" id="addBookBtn" class="btn return-btn">Submit</button>
                   </form>
 
                   <!-- Add Author Modal -->

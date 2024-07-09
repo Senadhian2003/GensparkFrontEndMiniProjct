@@ -287,6 +287,12 @@ a.sidebar-link:not(.active) :hover {
           
         }
 
+        .active-bg{
+          td{background-color: $basecolor;
+            color: white;
+          }
+        }
+
 
     }
 
@@ -295,7 +301,7 @@ a.sidebar-link:not(.active) :hover {
         td{
             border-bottom: none;
             color: $lightgreycolor;
-
+          
             span{
 
                 color: black;
@@ -309,6 +315,22 @@ a.sidebar-link:not(.active) :hover {
                 margin: 5px;
 
             }
+            span.active{
+
+              color: black;
+              height: 25px;
+              width: 25px;
+              background-color: #F5F5F5;
+              border-radius: 5px;
+              text-align: center;
+              padding-top: 3px;
+              padding-left: 8px;
+              margin: 5px;
+              background-color: $basecolor;
+
+          }
+
+
 
         }
 
@@ -403,4 +425,45 @@ a.sidebar-link:not(.active) :hover {
 .stock-input-field::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+}
+
+.pagination, .pagination-ellipsis, .pagination-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  height: 30px;
+  margin: 0 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.pagination:hover, .pagination-arrow:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination-arrow {
+  font-weight: bold;
+}
+
+.pagination-arrow.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  cursor: default;
 }

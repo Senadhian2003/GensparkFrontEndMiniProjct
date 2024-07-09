@@ -303,6 +303,14 @@ let validateAddress = () =>{
 
 }
 
+function clearBookForm() {
+    document.querySelector("#bookTitle").value = '';
+    document.querySelector("#bookDescription").value = '';
+    document.querySelector("#categoryName").value = '';
+    document.querySelector("#authorList").value = '';
+    document.querySelector("#publisherList").value = '';
+}
+
 
 function clearAuthorForm() {
     document.querySelector("#newAuthorName").value = '';
@@ -437,3 +445,62 @@ function validatePublisherSelect() {
         return true;
     }
 }
+
+const AddBookBtn = document.getElementById("addBookBtn");
+
+AddBookBtn.addEventListener('click',(e)=>{
+
+    e.preventDefault();
+    let flag = validateTitle();   
+    flag = validateDescription() && flag ;
+    flag = validateCategory() && flag;
+    flag = validateAuthorSelect() && flag;
+    flag = validatePublisherSelect() && flag;
+
+    if(flag){
+        const title = document.querySelector("#bookTitle").value;
+        const description = document.querySelector("#bookDescription").value;
+        const category = document.querySelector("#categoryName").value;
+        const authorId = document.querySelector("#authorList").value;
+        const publisherId = document.querySelector("#publisherList").value;
+        const image = document.querySelector('#bookImg').files[0];
+
+        console.log(title, description, category, authorId, publisherId, image)
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('authorId', authorId);
+        formData.append('publisherId', publisherId);
+        formData.append('category', category);
+        formData.append('bookImage', image);
+
+
+        fetch('http://localhost:5022/api/Book/AddNewBook', {
+            method: 'POST',
+            body: formData
+        }).then((res) => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            alert("Book added successfully");
+            clearBookForm();
+        }).catch((error) => {
+            console.error('Error:', error);
+            alert("Failed to add book. Please try again.");
+        });
+
+
+    }
+    else{
+        alert("Please enter all the details.")
+    }
+
+
+
+
+
+})

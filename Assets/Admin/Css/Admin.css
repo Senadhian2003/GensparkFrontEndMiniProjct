@@ -236,6 +236,10 @@ a.sidebar-link:not(.active) :hover {
 .dashboard-main table tbody .hover-bg:hover td {
   background-color: #f5f5f5;
 }
+.dashboard-main table tbody .active-bg td {
+  background-color: #5932EA;
+  color: white;
+}
 .dashboard-main table tfoot td {
   border-bottom: none;
   color: #B5B7C0;
@@ -250,6 +254,18 @@ a.sidebar-link:not(.active) :hover {
   padding-top: 3px;
   padding-left: 8px;
   margin: 5px;
+}
+.dashboard-main table tfoot td span.active {
+  color: black;
+  height: 25px;
+  width: 25px;
+  background-color: #F5F5F5;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 3px;
+  padding-left: 8px;
+  margin: 5px;
+  background-color: #5932EA;
 }
 .dashboard-main table.Detail {
   max-width: 500px;
@@ -337,4 +353,43 @@ a.sidebar-link:not(.active) :hover {
   margin: 0;
 }
 
-/*# sourceMappingURL=sidebar.css.map */
+.pagination-container {
+  display: flex;
+  align-items: center;
+}
+
+.pagination, .pagination-ellipsis, .pagination-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  height: 30px;
+  margin: 0 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.pagination:hover, .pagination-arrow:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination-arrow {
+  font-weight: bold;
+}
+
+.pagination-arrow.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  cursor: default;
+}
+
+/*# sourceMappingURL=Admin.css.map */

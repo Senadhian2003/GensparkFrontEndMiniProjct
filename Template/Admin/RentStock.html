@@ -49,14 +49,14 @@
           </li>
 
           <li class="sidebar-item">
-            <a href="./Book.html" class="sidebar-link "
+            <a href="./Book.html" class="sidebar-link active"
               ><i class="lni lni-book"></i>
               <span>Books</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a href="./BuySaleStock.html" class="sidebar-link active">
+            <a href="./BuySaleStock.html" class="sidebar-link ">
               <i class="lni lni-cloud-sync"></i> <span>Buy Stock</span></a
             >
           </li>
@@ -108,29 +108,40 @@
                     margin-top: 50px;
                   "
                 >
-                  <div
-                    class="nav-table d-flex justify-content-between align-items-center p-3 poppins-medium"
-                  >
-                    <div class="nav-items">
-                        <a href="Book.html" class="p-2 nav-link ">Books</a>
-                        <a href="SaleStock.html" class="p-2 nav-link ">Sale Stock</a>
-                        <a href="RentStock.html" class="p-2 nav-link active">Rent Stock</a>
-                    </div>
-                    <div class="nav-items">
-                      <input
-                        type="text"
-                        class="form-control input-text"
-                        placeholder="Search..."
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                      />
-                     
-                    </div>
-                  </div>
+                <div
+                class="nav-table d-flex justify-content-between align-items-center p-3 poppins-medium"
+              >
+                <div class="nav-items">
+                  <a href="Book.html" class="p-2 nav-link ">Books</a>
+                  <a href="SaleStock.html" class="p-2 nav-link ">Sale Stock</a>
+                  <a href="RentStock.html" class="p-2 nav-link active">Rent Stock</a>
+                </div>
+                <div class="nav-items">
+
+                  <select class="form-select" id="categoryList">
+                    <option value="All">
+                     All
+                    </option>
+                  </select>
+
+                  <input
+                    id="searchInput"
+                    type="text"
+                    class="form-control input-text"
+                    placeholder="Search..."
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                  <a href="./BuyRentStock.html"><button class="btn return-btn"  style="margin-top: 3px; width: 100px;">
+                    + Buy stock
+                  </button>
+                </a>
+                </div>
+              </div>
 
                   <div class="container-fluid">
                     <table
-                      id="customer-detail"
+                      id="table-detail"
                       class="table poppins-medium"
                       style="font-size: 14px"
                     >
@@ -139,95 +150,27 @@
                           <td scope="col">Book Id</td>
                           <td scope="col">Title</td>
                           <td scope="col" class="">Category</td>
-                          <td scope="col" class="">Author</td>
+                          <td scope="col" class="text-center">Price per Book</td>
+                          <td scope="col" class="text-center">Quantity in Stock</td>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <td>1</td>
-
-                          <td>Spiderman</td>
-                          <td class="">Comic</td>
-                          <td class="text-center">30</td>
-                          <td class="text-center">10</td>
-                        </tr>
-
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                        <td>1</td>
-
-                        <td>Spiderman</td>
-                        <td class="">Comic</td>
-                        <td class="text-center">30</td>
-                        <td class="text-center">10</td>
-                        </tr>
-
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                        <td>1</td>
-
-                        <td>Spiderman</td>
-                        <td class="">Comic</td>
-                        <td class="text-center">30</td>
-                        <td class="text-center">10</td>
-                        </tr>
-
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                        <td>1</td>
-
-                        <td>Spiderman</td>
-                        <td class="">Comic</td>
-                        <td class="text-center">30</td>
-                        <td class="text-center">10</td>
-                        </tr>
-
-                        <tr
-                          data-href="./UserRegularCartDetail.html"
-                          data-id="1"
-                          class="hover-bg"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapse1"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                        <td>1</td>
-
-                        <td>Spiderman</td>
-                        <td class="">Comic</td>
-                        <td class="text-center">30</td>
-                        <td class="text-center">10</td>
-                        </tr>
                         
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td colspan="2" style="margin-left: 5px">
+                            <div style="margin-left: 40px">1-10 of 97</div>
+                          </td>
+
+                          <td colspan="8" style="text-align: end">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-right: 40px">
+                              <span class="pagination-arrow" onclick="changePage(currentPage - 1)"> < </span>
+                              <div class="pagination-container d-flex"></div>
+                              <span class="pagination-arrow" onclick="changePage(currentPage + 1)"> > </span>
+                            </div>
+                          </td>
+                        </tr>
                       </tfoot>
                     </table>
                   </div>
@@ -245,5 +188,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../Assets/Admin/Javascript/sidebar.js"></script>
+    <script src="../../Assets/Admin/Javascript/RentStockDetail.js"></script>
   </body>
 </html>

@@ -114,14 +114,22 @@
                     <a href="RentStock.html" class="p-2 nav-link">Rent Stock</a>
                   </div>
                   <div class="nav-items">
+
+                    <select class="form-select" id="categoryList">
+                      <option value="All">
+                       All
+                      </option>
+                    </select>
+
                     <input
+                      id="searchInput"
                       type="text"
                       class="form-control input-text"
                       placeholder="Search..."
                       aria-label="Username"
                       aria-describedby="basic-addon1"
                     />
-                    <a href="./AddBook.html"><button class="btn return-btn" style="margin-top: 3px">
+                    <a href="./AddBook.html"><button class="btn return-btn"  style="margin-top: 3px; width: 100px;">
                       + Add Book
                     </button>
                   </a>
@@ -130,7 +138,7 @@
 
                 <div class="container-fluid">
                   <table
-                    id="customer-detail"
+                    id="table-detail"
                     class="table poppins-medium"
                     style="font-size: 14px"
                   >
@@ -140,6 +148,7 @@
                         <td scope="col">Title</td>
                         <td scope="col" class="">Category</td>
                         <td scope="col" class="">Author</td>
+                        <td scope="col" class="">Publisher</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -230,19 +239,11 @@
                           <div style="margin-left: 40px">1-10 of 97</div>
                         </td>
 
-                        <td colspan="3" style="text-align: end">
-                          <div
-                            class="d-flex justify-content-end"
-                            style="margin-right: 40px"
-                          >
-                            <span> < </span>
-
-                            <span class="pagination"> 1 </span>
-                            <span class="pagination"> 2 </span>
-                            <span class="pagination"> 3 </span>
-                            <span class="pagination"> 4 </span>
-
-                            <span> > </span>
+                        <td colspan="8" style="text-align: end">
+                          <div class="d-flex justify-content-end align-items-center" style="margin-right: 40px">
+                            <span class="pagination-arrow" onclick="changePage(currentPage - 1)"> < </span>
+                            <div class="pagination-container d-flex"></div>
+                            <span class="pagination-arrow" onclick="changePage(currentPage + 1)"> > </span>
                           </div>
                         </td>
                       </tr>
@@ -262,5 +263,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../Assets/Admin/Javascript/sidebar.js"></script>
+    <script src="../../Assets/Admin/Javascript/BooksDetail.js"></script>
   </body>
 </html>

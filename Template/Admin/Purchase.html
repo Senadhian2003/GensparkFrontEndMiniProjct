@@ -93,16 +93,32 @@
                     >
                     
                   </div>
-                  <div class="nav-items">
-                    
+                  <div class="nav-items d-flex align-items-center">
+                    <div class="date-pickers me-3">
+                      <label for="fromDate" style="display: inline;"> From</label>
+                      <input type="date" id="fromDate" class="form-control me-2" placeholder="From Date">
+                    </div>
+                    <div class="date-pickers me-3">
+                      <label for="toDate" style="display: inline;"> To</label>
+                      <input type="date" id="toDate" class="form-control me-2" placeholder="To Date">
+                    </div>
 
-                    <input
-                      type="text"
-                      class="form-control input-text"
-                      placeholder="Search..."
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
+
+
+                     <select class="form-select" id="typeList">
+                      <option value="All">
+                       All
+                      </option>
+
+                      <option value="Sale">
+                       Sale
+                       </option>
+
+                       <option value="Rent">
+                        Rent
+                       </option>
+
+                    </select>
                   </div>
                 </div>
 
@@ -375,19 +391,11 @@
                           <div style="margin-left: 40px">1-10 of 97</div>
                         </td>
 
-                        <td colspan="2" style="text-align: end">
-                          <div
-                            class="d-flex justify-content-end"
-                            style="margin-right: 40px"
-                          >
-                            <span> < </span>
-
-                            <span class="pagination"> 1 </span>
-                            <span class="pagination"> 2 </span>
-                            <span class="pagination"> 3 </span>
-                            <span class="pagination"> 4 </span>
-
-                            <span> > </span>
+                        <td colspan="8" style="text-align: end">
+                          <div class="d-flex justify-content-end align-items-center" style="margin-right: 40px">
+                            <span class="pagination-arrow" onclick="changePage(currentPage - 1)"> < </span>
+                            <div class="pagination-container d-flex"></div>
+                            <span class="pagination-arrow" onclick="changePage(currentPage + 1)"> > </span>
                           </div>
                         </td>
                       </tr>
@@ -400,20 +408,13 @@
         </div>
       </div>
     </div>
-    <script>
-      function getQueryParameter(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-      }
     
-      const userId = getQueryParameter('userId');
-      console.log(userId); // Use the userId as needed
-    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
     <script src="../../Assets/Admin/Javascript/sidebar.js"></script>
+    <script src="../../Assets/Admin/Javascript/Purchase.js"></script>
   </body>
 </html>

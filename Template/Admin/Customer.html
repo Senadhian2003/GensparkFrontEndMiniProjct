@@ -134,9 +134,20 @@
                     
                   </div>
                   <div class="nav-items">
-                    
+                    <select class="form-select" id="userType">
+                      <option value="All" selected>
+                        All
+                      </option>
+                      <option value="Premium User" >
+                        Premium user
+                      </option>
+                      <option value="Normal User" >
+                        Normal user
+                      </option>
+                    </select>
 
                     <input
+                      id="searchInput"
                       type="text"
                       class="form-control input-text"
                       placeholder="Search..."
@@ -172,18 +183,10 @@
                         </td>
 
                         <td colspan="3" style="text-align: end">
-                          <div
-                            class="d-flex justify-content-end"
-                            style="margin-right: 40px"
-                          >
-                            <span> < </span>
-
-                            <span class="pagination"> 1 </span>
-                            <span class="pagination"> 2 </span>
-                            <span class="pagination"> 3 </span>
-                            <span class="pagination"> 4 </span>
-
-                            <span> > </span>
+                          <div class="d-flex justify-content-end align-items-center" style="margin-right: 40px">
+                            <span class="pagination-arrow" onclick="changePage(currentPage - 1)"> < </span>
+                            <div class="pagination-container d-flex"></div>
+                            <span class="pagination-arrow" onclick="changePage(currentPage + 1)"> > </span>
                           </div>
                         </td>
                       </tr>

@@ -140,11 +140,12 @@
                         >
                           <td>1</td>
 
-                          <td class="text-center"><input id="1 title" list="Titles" name="Title" >
-                            <datalist id="Titles">
-                              
-                             
-                            </datalist></td>
+                          <td class="text-center">
+                            <select class="form-select" id="books-select" onblur="" required>
+                              <option value="" selected disabled>
+                                Select a Book
+                              </option>
+                            </select>
                           <td class="text-center"><input itemid="1 Price" type="number" value="0" id="QuantityInput1"></td>
                           <td class="text-center" ><div class="stock-input">
                             <button class="stock-btn minus" id="1 SubQuantity">-</button>
@@ -187,6 +188,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../Assets/Admin/Javascript/sidebar.js"></script>
-    <script src="../../Assets/Admin/Javascript/tableDom.js" defer></script>
+    <script src="../../Assets/Admin/Javascript/BuySaleStocks.js" defer></script>
   </body>
 </html>

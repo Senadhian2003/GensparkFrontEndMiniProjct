@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athena - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../Assets/Admin/Css/Admin.css" />  
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .logo {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .login-btn {
+            background-color: #4285F4;
+        }
+        .register-btn {
+            background-color: #4285F4;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <a class="navbar-brand d-flex" style="margin-top: 8px" href="#">
+            <img src="../../Assets/User/Images/Athena.avif" style="height: 40px;" alt="Logo" />
+            <p
+              class="poppins-semibold"
+              style="margin-left: 10px; color: black; font-size: 26px"
+            >
+              Athena
+            </p>
+          </a>
+        <form>
+            <input type="text" placeholder="User ID" id="user-id" required>
+            <input type="password" placeholder="Password" id="user-password" required>
+            <button type="submit" class="login-btn" id="login-btn">Login</button>
+        </form>
+        <button onclick="location.href='register.html'" class="register-btn">Register</button>
+    </div>
+</body>
+
+<script src="../../Assets/User/Javascript/login.js"></script>
+
+
+</html>

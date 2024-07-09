@@ -1,19 +1,4 @@
-console.log("User Fine Detail page")
-
-function getQueryParameter(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
-
-const userId = getQueryParameter('userId');
-
-
-document.querySelectorAll('.nav-items a').forEach(link => {
-  link.addEventListener('click', function() {
-   
-    window.location.href = `${this.getAttribute('data-href')}?userId=${userId}`;
-  });
-});
+console.log("Regular Cart page")
 
 let allFine = []; // Store all Fines data
 let filteredFine = []; // Store filtered Fine data
@@ -57,14 +42,12 @@ function pendingFinesFilter(Fine) {
   const pendingSwitch = document.getElementById('pendingReturnSwitch');
   return !pendingSwitch.checked || Fine.numbeOfBooksToPayFine > 0;
 }
-
 // Search filter
 function searchFilter(Fine) {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
   return Fine.rentId.toString().toLowerCase().includes(searchTerm) || 
   Fine.user.name.toLowerCase().includes(searchTerm);
 }
-
 // Event listeners for filters
 document.getElementById('fromDate').addEventListener('change', applyFilters);
 document.getElementById('toDate').addEventListener('change', applyFilters);
@@ -145,7 +128,7 @@ let createRows = (arr)=>{
         
         innerHTMLContent+=`  <tr class="hover-bg"  data-bs-toggle="collapse" data-bs-target="#collapse${index+1}" aria-expanded="false" aria-controls="collapseOne">
                         <td>${element.rentId}</td>
-                     
+                        <td>${element.user.name}</td>
 
                         
                         <td class="text-center">${element.rentDate.slice(0,10)}</td>
