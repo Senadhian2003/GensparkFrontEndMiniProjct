@@ -37,7 +37,7 @@
       <div class="books padding">
         <nav class="navbar navbar-expand-lg">
           <div class="container">
-            <a class="navbar-brand d-flex" style="margin-top: 8px" href="#">
+            <a class="navbar-brand d-flex" style="margin-top: 8px" href="./Home.html">
               <img src="../../Assets/User/Images/Athena.avif" alt="Logo" />
               <p
                 class="poppins-semibold"
@@ -72,8 +72,8 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Order History</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Location</a>
+                <li class="nav-item" id="authentication">
+              
                 </li>
               </ul>
             </div>
@@ -114,27 +114,13 @@
                 />
               </div>
 
-              <div class="dropdown">
-                <button
-                  class="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Price low to high
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li>
-                    <a class="dropdown-item" href="#">Price low to high</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Price high to low</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Avg. Customer Review</a>
-                  </li>
-                </ul>
+              <div class="dropdown ">
+                <select class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="sort" >
+                  <option value="name"  selected >Name</option>
+                  <option value="price-low-high"  >Price low to high</option>
+                  <option value="price-high-low"  >Price high to low</option>
+                  <option value="rating"  >Rating</option>
+                </select>
               </div>
             </div>
           </div>
@@ -306,12 +292,8 @@
                   <label for="categorySelect" class="form-label"
                     >Category</label
                   >
-                  <select class="form-select" id="categorySelect">
-                    <option selected>All Categories</option>
-                    <option value="fiction">Fiction</option>
-                    <option value="non-fiction">Non-Fiction</option>
-                    <option value="science">Science</option>
-                    <option value="history">History</option>
+                  <select class="form-select" id="categoryList">
+                    <option value="All" selected >All</option>
                   </select>
                 </div>
 
@@ -357,7 +339,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="rating"
+                        name="filter-rating"
                         id="rating5"
                         value="5"
                       />
@@ -369,7 +351,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="rating"
+                        name="filter-rating"
                         id="rating4"
                         value="4"
                       />
@@ -381,7 +363,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="rating"
+                        name="filter-rating"
                         id="rating3"
                         value="3"
                       />
@@ -393,7 +375,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="rating"
+                        name="filter-rating"
                         id="rating2"
                         value="2"
                       />
@@ -405,7 +387,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="rating"
+                        name="filter-rating"
                         id="rating1"
                         value="1"
                       />
@@ -420,13 +402,13 @@
           </div>
           <div class="modal-footer">
             <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Clear
-            </button>
-            <button type="button" class="btn btn-primary">Apply Filter</button>
+            type="button"
+            class="btn btn-secondary"
+            onclick="clearFilters()"
+          >
+            Clear
+          </button>
+            <button type="button"  onclick="applyFilters()" class="btn btn-primary">Apply Filter</button>
           </div>
         </div>
       </div>
@@ -448,7 +430,7 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider@14.6.3/distribute/nouislider.min.js"></script>
 
  
-
+    <script src="../../Assets/User/Javascript/toastify-js-master/src/toastify.js"></script>
     <script src="../../Assets/User/Javascript/Books.js"  ></script>
   </body>
 </html>

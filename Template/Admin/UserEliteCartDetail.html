@@ -66,6 +66,11 @@
               ><i class="lni lni-support"></i> <span>Purchase History</span>
             </a>
           </li>
+          <li class="sidebar-item">
+            <a href="#" onclick="logout()" class="sidebar-link"
+              ><i class="lni lni-exit"></i> <span>Logout</span>
+            </a>
+          </li>
         </ul>
       </aside>
 
@@ -95,7 +100,7 @@
                     >Rent</a
                   >
                   <a style="cursor: pointer;"  data-href="./UserFineDetail.html" class="p-2 nav-link">Fine</a>
-                  <a style="cursor: pointer;" data-href="./UserFineDetail.html" class="p-2 nav-link">Rent a book</a>
+                  <a style="cursor: pointer;" data-href="./RentBooksToUser.html" class="p-2 nav-link">Rent a book</a>
                 </div>
                   <div class="nav-items">
                     
@@ -104,6 +109,7 @@
                       type="text"
                       class="form-control input-text"
                       placeholder="Search..."
+                      id="searchInput"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
                     />
@@ -127,77 +133,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
-
-                      <tr
-                        
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <td>1</td>
-
-                        
-                        <td>Sherlock Holmes</td>
-                        <td class="text-center">5</td>
-                        <td class="text-center">11-06-2024</td>
-                       
-                       
-                        <td class="text-center"><button class="btn return-btn" >Return</button></td>
-                      </tr>
                      
                     </tbody>
 
@@ -208,19 +143,16 @@
                         </td>
 
                         <td colspan="3" style="text-align: end">
-                          <div
-                            class="d-flex justify-content-end"
-                            style="margin-right: 40px"
-                          >
-                            <span> < </span>
-
-                            <span class="pagination"> 1 </span>
-                            <span class="pagination"> 2 </span>
-                            <span class="pagination"> 3 </span>
-                            <span class="pagination"> 4 </span>
-
-                            <span> > </span>
-                          </div>
+                          <div class="d-flex justify-content-end align-items-center" style="margin-right: 40px">
+                            <button class="btn return-btn" style="margin-right: 5px; width: 70px;" id="submit-btn" onclick="submitData()">Return</button>
+                          
+                            <div  class="d-flex justify-content-end align-items-center" >
+                              <span class="pagination-arrow" onclick="changePage(currentPage - 1)"> < </span>
+                              <div id="pagination-container" class=" d-flex"></div>
+                              <span class="pagination-arrow" onclick="changePage(currentPage + 1)"> > </span>
+                          
+                            </div>
+                             </div>
                         </td>
                       </tr>
                     </tfoot>
@@ -233,6 +165,7 @@
       </div>
     </div>
    
+    <script src="../../Assets/User/Javascript/toastify-js-master/src/toastify.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

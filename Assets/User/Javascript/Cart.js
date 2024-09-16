@@ -1,4 +1,70 @@
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQcmVtaXVtIFVzZXIiLCJleHAiOjE3MjA2Nzk3ODB9.YG44-Jb08ZQPzUwSk6zM_d3tOd-9S0qbeJlTb7g-BrY'
+// const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQcmVtaXVtIFVzZXIiLCJleHAiOjE3MjA2Nzk3ODB9.YG44-Jb08ZQPzUwSk6zM_d3tOd-9S0qbeJlTb7g-BrY'
+
+const userToken = localStorage.getItem('token')
+
+if(!userToken){
+  Toast("User login required");
+    setTimeout(() => {
+        window.location.href = './login.html';
+    }, 1500); // Redirect after 1.5 seconds
+}
+else{
+
+  fetchCartData()
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.reload();
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+function Toast(message) {
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+  })
+  myToast.showToast();
+}
+
+function populateEmptyCart(){
+
+  let cartItemsDivision = document.getElementById('cart-items')
+
+  cartItemsDivision.innerHTML=`<img
+                  src="https://supershopping.lk/images/home/Cart-empty.gif"
+                  height="450px"
+                  width="700px"
+                  alt=""
+                />`
+
+  let checkoutContainer = document.getElementById('checkout-container')
+  checkoutContainer.innerHTML=`<p
+                  class="plus-jakarta-sans-ExtraBold"
+                  style="
+                    font-size: 70px;
+                    line-height: 89px;
+                    letter-spacing: 0.01px;
+                  "
+                >
+                  Add books <br />
+                  To your<br />
+                  Cart <br />
+                  And enjoy
+                </p>
+
+                <a href="./Books.html"
+                  ><button class="btn btn-primary" style="width: 100%">
+                    Browse Books
+                  </button></a
+                >`
+
+
+
+}
 
 function populateCartData(data){
 
@@ -24,7 +90,9 @@ function populateCartData(data){
                                     class="book-img"
                                     height="150px"
                                     width="100px"
-                                    src="../../Assets/User/Images/HarryPotterBookCover.jpg"
+                                    src="${item.image 
+                                      ? `data:image/jpeg;base64,${item.image}`
+                                      : '../../Assets/User/Images/BookCover.avif'}"
                                     alt=""
                                   
                                   />
@@ -89,22 +157,54 @@ function populateCartData(data){
       updateBtn.addEventListener('click', () => handleUpdate(item.bookId));
   });
 
-
-
-
+    let checkoutContainer = document.getElementById('checkout-container')
 
     const deliveryAmount =10
-    let subTotal = document.getElementById('sub-total');
-    subTotal.innerText = data.total +data.discount;
+    checkoutContainer.innerHTML=`<div class="checkout-card">
 
-    let discount = document.getElementById('discount');
-    discount.innerText = data.discount;
+                        <p class="heading" >Order Summary</p>
 
-    let delivery = document.getElementById('delivery');
-    delivery.innerText = deliveryAmount;
+                        <div class="d-flex justify-content-between">
+                            <p class="left-text">Subtotal</p>
+                            <p class="right-text" id="sub-total">$${data.total +data.discount}</p>
+                        </div>
 
-    let finalTotal = document.getElementById('final-total')
-    finalTotal.innerText = data.total + deliveryAmount;
+                        <div class="d-flex justify-content-between">
+                          <p class="left-text">Discount</p>
+                          <p class="right-text" id="discount">$${data.discount}</p>
+                      </div>
+
+                        <div class="d-flex justify-content-between">
+                            <p class="left-text">Delivery</p>
+                            <p class="right-text" id="delivery">$${deliveryAmount}</p>
+                        </div>
+
+                        
+
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <p class="left-text">Total</p>
+                            <p class="right-text" id="final-total">$${data.total + deliveryAmount}</p>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="checkout()" id="checkout-btn" style="width: 100%">
+                            Checkout
+                          </button>`
+
+
+
+    
+    // let subTotal = document.getElementById('sub-total');
+    // subTotal.innerText = data.total +data.discount;
+
+    // let discount = document.getElementById('discount');
+    // discount.innerText = data.discount;
+
+    // let delivery = document.getElementById('delivery');
+    // delivery.innerText = deliveryAmount;
+
+    // let finalTotal = document.getElementById('final-total')
+    // finalTotal.innerText = data.total + deliveryAmount;
 
 
 }
@@ -146,7 +246,7 @@ function deleteCartItem(bookId){
   })
   .then(data => {
     console.log(data);
-    alert("Item Deleted from cart");
+    Toast("Item Deleted from cart");
     fetchCartData(); 
   })
   .catch(error => {
@@ -185,13 +285,16 @@ function AddBookToCart(bookId, quantity) {
   .catch(error => {
     console.error('Error:', error);
     alert("Failed to add item to cart");
+
+
+
   });
 }
 
 
-let checkoutBtn = document.getElementById('checkout-btn')
+// let checkoutBtn = document.getElementById('checkout-btn')
 
-checkoutBtn.addEventListener('click',()=>checkout());
+// checkoutBtn.addEventListener('click',()=>checkout());
 
 let checkout = ()=>{
 
@@ -204,9 +307,11 @@ let checkout = ()=>{
 }).then(res=> res.json())
 .then((data)=>{
     console.log(data)
-    alert("Checkout successful")
- 
-   
+    Toast("Checkout successful")
+
+    setTimeout(() => {
+          window.location.href = './Books.html';
+      }, 2000); // Redirect after 2 seconds
    
 }).catch((err)=>{
     console.log(err.message)
@@ -227,17 +332,40 @@ function fetchCartData() {
           'Authorization': `Bearer ${userToken}`
       }
   })
-  .then(res => res.json())
+  .then(async(res) => {
+    if (res.status === 401) {
+      // Handle 401 Unauthorized
+      Toast("Unauthorized: Please log in");
+      setTimeout(() => {
+          window.location.href = './login.html';
+      }, 2000); // Redirect after 2 seconds
+      throw new Error("Unauthorized");
+  }
+  
+  if (!res.ok) {
+      // For other error statuses, parse the error response
+      const errorData = await res.json();
+      throw errorData;
+  }
+  
+  return res.json();
+  })
   .then((data) => {
       console.log(data);
       populateCartData(data);
   })
-  .catch((err) => {
-      console.log(err.message);
-      // Handle error
+  .catch((error) => {
+    console.error('Error:', error);
+    // Display the error message
+    populateEmptyCart()
+    if (error.message && error.message !== "Unauthorized") {
+        Toast(error.message);
+    } else if (error.message !== "Unauthorized") {
+        // Fallback for unexpected errors
+        Toast("An unexpected error occurred");
+    }
   });
 }
 
-fetchCartData()
 
 

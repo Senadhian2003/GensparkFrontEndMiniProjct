@@ -1,7 +1,35 @@
-const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQcmVtaXVtIFVzZXIiLCJleHAiOjE3MjA2Nzk3ODB9.YG44-Jb08ZQPzUwSk6zM_d3tOd-9S0qbeJlTb7g-BrY'
+const userToken = localStorage.getItem('token')
 
 
+let authentication = document.getElementById('authentication')
 
+function updateAuthLink() {
+    if(userToken) {
+        authentication.innerHTML = `<a class="nav-link" href="#" onclick="logout()">Logout</a>`
+    } else {
+        authentication.innerHTML = `<a class="nav-link" href="./login.html">Login</a>`
+    }
+}
+
+function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    Toast("Logged out successfully");
+    setTimeout(() => {
+        window.location.reload();
+    }, 1500); // Redirect after 1.5 seconds
+}
+
+function Toast(message) {
+    var myToast = Toastify({
+        text: message,
+        duration: 1000
+    })
+    myToast.showToast();
+}
+
+// Call this function when the page loads
+updateAuthLink();
 
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('id');
@@ -72,7 +100,7 @@ function populateBookdata(stock){
     category.textContent = stock.book.category
     author.innerHTML = `${stock.book.author.authorName} <span style="font-size: 14px;" class="publisher"><small>published by ${stock.book.publisher.publisherName}</small></span>`;
     
-    rating.innerHTML = `<span class="rating-count" style="color: black">${avgRating?avgRating:'0.0'}</span>
+    rating.innerHTML = `<span class="rating-count" style="color: black">${avgRating?formatPercentage(avgRating):'0.00'}</span>
               <span class="fa fa-star" id="1"></span>
               <span class="fa fa-star" id="2"></span>
               <span class="fa fa-star" id="3"></span>
@@ -83,6 +111,12 @@ function populateBookdata(stock){
     price.textContent = '$ ' + stock.pricePerBook;
     content.textContent = stock.book.description;
     stock_content.textContent = stock.quantityInStock + ' books in stock'
+    const bookImage = document.getElementById('book-detail');
+
+// Set the source of the image
+bookImage.src = stock.image
+  ? `data:image/jpeg;base64,${stock.image}`
+  : '../../Assets/User/Images/BookCover.avif';
     applyRatings()
 }
 
@@ -90,7 +124,7 @@ function populateFeedbackData(feedbackData){
 
     let splitRating = document.getElementById('splitRating')
     splitRating.innerHTML = `<span class="rating-count" style="color: black"
-                                  >${feedbackData.averageRating}</span
+                                  >${formatPercentage(feedbackData.averageRating)}</span
                                 >
                                 <span class="fa fa-star" id="1"></span>
                                 <span class="fa fa-star" id="2"></span>
@@ -105,12 +139,12 @@ function populateFeedbackData(feedbackData){
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width: ${feedbackData.fiveStarPercentage}%"
+                  style="width: ${formatPercentage(feedbackData.fiveStarPercentage)}%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                ${feedbackData.fiveStarPercentage}%
+                ${formatPercentage(feedbackData.fiveStarPercentage)}%
                 </div>
               </div>
 
@@ -118,12 +152,12 @@ function populateFeedbackData(feedbackData){
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width: ${feedbackData.fourStarPercentage}%"
+                  style="width: ${formatPercentage(feedbackData.fourStarPercentage)}%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                ${feedbackData.fourStarPercentage}%
+                ${formatPercentage(feedbackData.fourStarPercentage)}%
                 </div>
               </div>
 
@@ -131,12 +165,12 @@ function populateFeedbackData(feedbackData){
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width: ${feedbackData.threeStarPercentage}%"
+                  style="width: ${formatPercentage(feedbackData.threeStarPercentage)}%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                 ${feedbackData.threeStarPercentage}%
+                 ${formatPercentage(feedbackData.threeStarPercentage)}%
                 </div>
               </div>
 
@@ -144,12 +178,12 @@ function populateFeedbackData(feedbackData){
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width: ${feedbackData.twoStarPercentage}%"
+                  style="width: ${formatPercentage(feedbackData.twoStarPercentage)}%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                 ${feedbackData.twoStarPercentage}%
+                 ${formatPercentage(feedbackData.twoStarPercentage)}%
                 </div>
               </div>
 
@@ -157,12 +191,12 @@ function populateFeedbackData(feedbackData){
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width: ${feedbackData.oneStarPercentage}%"
+                  style="width: ${formatPercentage(feedbackData.oneStarPercentage)}%"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                 ${feedbackData.oneStarPercentage}%
+                 ${formatPercentage(feedbackData.oneStarPercentage)}%
                 </div>
               </div>`
 
@@ -227,6 +261,120 @@ function GetItemQuantityAndAddToCart(bookId){
 
 }
 
+function validateText(element){
+  
+  const name = document.querySelector("#" + element).value;
+  const validationMessage = document.querySelector("#"+ element +"Help");
+  
+  if (!name) {
+      validationMessage.textContent = "Heading cannot be empty";
+      validationMessage.style.color = "red";
+      return false
+  }
+  else {
+      validationMessage.textContent = "Accepted";
+      validationMessage.style.color = "green";
+      return true
+  }
+
+}
+
+function giveFeedbackRating(starNumber) {
+  let feedbackStarCount = document.getElementById("giveRatingStar");
+  feedbackStarCount.textContent = starNumber;
+
+  const ratings = document.querySelector(".feedback-rating");
+  const stars = ratings.querySelectorAll(".fa");
+  
+  stars.forEach((star, index) => {
+      if (index < starNumber) {
+          star.classList.remove('fa-star-o');
+          star.classList.add('fa-star');
+      } else {
+          star.classList.remove('fa-star');
+          star.classList.add('fa-star-o');
+      }
+  });
+}
+
+function giveFeedback(){
+
+ 
+  let flag = validateText("Heading");   
+    flag = validateText("Description") && flag ;
+  
+  if(flag){
+    let feedbackStarCount = document.getElementById("giveRatingStar").textContent;
+    let heading = document.getElementById('Heading').value
+    let description = document.getElementById('Description').value
+
+    console.log(feedbackStarCount, heading, description)
+
+    fetch('http://localhost:5022/api/Book/GiveFeedBack', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${userToken}`
+          
+      },
+      body: JSON.stringify({
+        "bookId": bookId,
+        "feedbackHeading": heading,
+        "message": description,
+        "rating": feedbackStarCount
+      })
+  })
+  .then(async (res) => {
+    if (res.status === 401) {
+        // Handle 401 Unauthorized
+        Toast("Unauthorized: Please log in");
+        setTimeout(() => {
+            window.location.href = './login.html';
+        }, 2000); // Redirect after 2 seconds
+        throw new Error("Unauthorized");
+    }
+    
+    if (!res.ok) {
+        // For other error statuses, parse the error response
+        const errorData = await res.json();
+        throw errorData;
+    }
+    
+    return res.json();
+  })
+  .then((data) => {
+    console.log('Success:', data);
+    Toast("Feedback submitted");
+    setTimeout(() => {
+      window.location.reload();
+  }, 2000);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    // Display the error message
+    if (error.message && error.message !== "Unauthorized") {
+        Toast(error.message);
+    } else if (error.message !== "Unauthorized") {
+        // Fallback for unexpected errors
+        Toast("An unexpected error occurred");
+    }
+  });
+  
+
+
+
+  }
+  else{
+    Toast("Please enter all the details for feedback")
+  }
+
+
+
+  
+
+}
+
+
   
   fetch(`http://localhost:5022/api/Book/ViewSaleBookDetail?bookId=${bookId}`,{
     method : "GET"
@@ -237,51 +385,101 @@ function GetItemQuantityAndAddToCart(bookId){
    
 }).catch((err)=>{
     console.log(err.message)
-    createErrorRow(err.message)
+    // createErrorRow(err.message)
 
 })
 
+function formatPercentage(value) {
+  if (Number.isInteger(value)) {
+    return value;
+  } else {
+    return Number(value.toFixed(1));
+  }
+}
 
 fetch(`http://localhost:5022/api/Book/ViewFeedback?BookId=${bookId}`,{
     method : "GET"
-}).then(res=> res.json())
+}).then(async (res) => {
+  if (res.status === 401) {
+      // Handle 401 Unauthorized
+      Toast("Unauthorized: Please log in");
+      setTimeout(() => {
+          window.location.href = './login.html';
+      }, 2000); // Redirect after 2 seconds
+      throw new Error("Unauthorized");
+  }
+  
+  if (!res.ok) {
+      // For other error statuses, parse the error response
+      const errorData = await res.json();
+      throw errorData;
+  }
+  
+  return res.json();
+})
 .then((data)=>{
     console.log(data)
 
     populateFeedbackData(data)
    
    
-}).catch((err)=>{
-    console.log(err.message)
-    createErrorRow(err.message)
+}).catch((error)=>{
+    console.log(error.message)
+    if (error.message && error.message !== "Unauthorized") {
+      Toast(error.message);
+  } else if (error.message !== "Unauthorized") {
+      // Fallback for unexpected errors
+      Toast("An unexpected error occurred");
+  }
 
 })
 
 
-function AddBookToCart(bookId, quantity) {
+function AddBookToCart(bookId, quantity){
+
   fetch('http://localhost:5022/api/Cart/AddItemToCart', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${userToken}`
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`
+        
     },
     body: JSON.stringify({
       "bookId": bookId,
       "quantity": quantity
     })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    alert("Item added to cart");
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert("Failed to add item to cart");
-  });
+})
+.then(async (res) => {
+  if (res.status === 401) {
+      // Handle 401 Unauthorized
+      Toast("Unauthorized: Please log in");
+      setTimeout(() => {
+          window.location.href = './login.html';
+      }, 2000); // Redirect after 2 seconds
+      throw new Error("Unauthorized");
+  }
+  
+  if (!res.ok) {
+      // For other error statuses, parse the error response
+      const errorData = await res.json();
+      throw errorData;
+  }
+  
+  return res.json();
+})
+.then((data) => {
+  console.log('Success:', data);
+  Toast("Item added to cart")
+  // Handle successful response
+})
+.catch((error) => {
+  console.error('Error:', error);
+  // Display the error message
+  if (error.message && error.message !== "Unauthorized") {
+      Toast(error.message);
+  } else if (error.message !== "Unauthorized") {
+      // Fallback for unexpected errors
+      Toast("An unexpected error occurred");
+  }
+});
 }

@@ -1,5 +1,53 @@
 console.log("User Fine Detail page")
 
+
+function  Toast(message){
+
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+     })
+     myToast.showToast();
+
+}
+
+
+const userToken = localStorage.getItem('token')
+const userRole = localStorage.getItem('userRole')
+
+
+if(!userToken){
+  Toast("Login Requited")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+if(userRole!="Admin"){
+  Toast("Unauthorized access....")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
 function getQueryParameter(name) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(name);
@@ -61,8 +109,7 @@ function pendingFinesFilter(Fine) {
 // Search filter
 function searchFilter(Fine) {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-  return Fine.rentId.toString().toLowerCase().includes(searchTerm) || 
-  Fine.user.name.toLowerCase().includes(searchTerm);
+  return Fine.rentId.toString().toLowerCase().includes(searchTerm);
 }
 
 // Event listeners for filters
@@ -131,6 +178,46 @@ let createErrorRow = (errorMessage)=>{
 
 }
 
+function payFine(fineId, bookId){
+
+  console.log(fineId, bookId)
+
+  fetch('http://localhost:5022/api/Fine/PayFineForOneBook', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+            },
+        body: JSON.stringify({
+          "fineId": fineId,
+          "bookId": bookId
+        })
+    }).then(async(res)=> {
+  
+      if (!res.ok) {
+        // For other error statuses, parse the error response
+        const errorData = await res.json();
+        throw errorData;
+    }
+      
+      return res.json()
+    
+    }).then((data)=>{
+        console.log(data)
+        Toast("Fine Paid successfully")
+        setTimeout(() => {
+          window.location.reload();
+      }, 1500); // Redirect after 1.5 seconds
+    })
+    .catch((err)=>{
+      console.log(err)
+      Toast(err.message);
+      // createErrorRow(err.message)
+    
+    })
+
+
+}
+
 
 let createRows = (arr)=>{
 
@@ -179,8 +266,16 @@ let createRows = (arr)=>{
                                   <td>${rentDetail.bookId}</td> 
                                   <td>${rentDetail.fineAmount}</td>
                                   <td class="text-center" >${rentDetail.finePaidDate? rentDetail.finePaidDate.slice(0,10):'-'}</td>
-                                  <td><p  class="success">${rentDetail.status}</p></td>
-                                </tr>`
+                                  `
+
+                                  if(rentDetail.status == "Fine paid"){
+                                    rentDetailHtmlContent+=` <td><p class="success">${rentDetail.status}</p></td>`
+                                  }
+                                  else{
+                                     rentDetailHtmlContent+=` <td><p style="cursor : pointer" onclick="payFine(${element.fineId}, ${rentDetail.bookId})" class="danger">${rentDetail.status}</p></td>`
+                                  }
+                            
+                  rentDetailHtmlContent+=`</tr>`
 
         });
 

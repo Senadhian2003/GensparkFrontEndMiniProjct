@@ -1,3 +1,53 @@
+
+function  Toast(message){
+
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+     })
+     myToast.showToast();
+
+}
+
+
+const userToken = localStorage.getItem('token')
+const userRole = localStorage.getItem('userRole')
+
+
+if(!userToken){
+  Toast("Login Requited")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+if(userRole!="Admin"){
+  Toast("Unauthorized access....")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
 let allRents = []; // Store all rents data
 let filteredRents = []; // Store filtered rents data
 
@@ -150,9 +200,16 @@ console.log(rentDetail)
 rentDetailHtmlContent+=`<tr>
                 <td>${rentDetail.bookId}</td>
                 <td>${rentDetail.price}</td>
-                <td class="text-center">${rentDetail.returnDate.slice(0,10)}</td>
-                <td><p class="success">${rentDetail.status}</p></td>
-              </tr>`
+                <td class="text-center">${rentDetail.returnDate? rentDetail.returnDate.slice(0,10):'-'}</td>`
+      
+                if(rentDetail.status == "Returned"){
+                  rentDetailHtmlContent+=` <td><p class="success">${rentDetail.status}</p></td>`
+                }
+                else{
+                   rentDetailHtmlContent+=` <td><p class="danger">${rentDetail.status}</p></td>`
+                }
+          
+rentDetailHtmlContent+=`</tr>`
 
 });
 

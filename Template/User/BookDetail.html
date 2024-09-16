@@ -38,7 +38,7 @@
 
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand d-flex" style="margin-top: 8px" href="#">
+          <a class="navbar-brand d-flex" style="margin-top: 8px" href="./Home.html">
             <img src="../../Assets/User/Images/Athena.avif" alt="Logo" />
             <p
               class="poppins-semibold"
@@ -63,20 +63,20 @@
             id="navbarNav"
             style="margin-left: 70px"
           >
-          <ul class="navbar-nav" style="font-size: 14px">
-            <li class="nav-item">
-              <a class="nav-link active" href="./Books.html">Purchase</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./Cart.html">Cart</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Order History</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Location</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav" style="font-size: 14px">
+              <li class="nav-item">
+                <a class="nav-link active" href="./Books.html">Purchase</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./Cart.html">Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Order History</a>
+              </li>
+              <li class="nav-item" id="authentication">
+              
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
@@ -89,6 +89,7 @@
           >
             <img
               class="book-img"
+              id="book-detail"
               src="../../Assets/User/Images/HarryPotterBookCover.jpg"
               alt=""
             />
@@ -97,7 +98,12 @@
           <div class="col-sm-7 col">
             <p class="title">Once Upon a time</p>
             <p class="category">Adventure</p>
-            <p class="author">Martin smith <span style="font-size: 14px;" class="publisher" ><small>published by orlando</small></span></p> 
+            <p class="author">
+              Martin smith
+              <span style="font-size: 14px" class="publisher"
+                ><small>published by orlando</small></span
+              >
+            </p>
             <div class="rating">
               <span class="rating-count" style="color: black">2.5</span>
               <span class="fa fa-star" id="1"></span>
@@ -147,255 +153,131 @@
         <div class="row">
           <div class="col-sm-5">
             <div class="aside-rating">
-              <div class="rating" id="splitRating" style="font-size: 24px">
-                <span class="rating-count" style="color: black">2.5</span>
-                <span class="fa fa-star" id="1"></span>
-                <span class="fa fa-star" id="2"></span>
-                <span class="fa fa-star" id="3"></span>
-                <span class="fa fa-star" id="4"></span>
-                <span class="fa fa-star" id="5"></span>
-                <span style="font-size: 18px; color: black">(4)</span>
-              </div>
-
+              <div
+                class="rating"
+                id="splitRating"
+                style="font-size: 24px"
+              ></div>
 
               <div id="feedback-progress">
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 75%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  75%
-                </div>
+                <p
+                class="plus-jakarta-sans-ExtraBold"
+                style="font-size: 70px; line-height: 89px; letter-spacing: 0.01px"
+              >
+                Be the first  <br>
+                One To<br /> Review  
+                
+              </p>
               </div>
 
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 60%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  60%
-                </div>
-              </div>
-
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 25%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  25%
-                </div>
-              </div>
-
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 10%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  10%
-                </div>
-              </div>
-
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 5%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  5%
-                </div>
-              </div>
-              </div>
-
-              <button class="btn btn-primary" style="width: 100%">
+              <button class="btn btn-primary"  data-bs-toggle="modal"
+              data-bs-target="#giveFeedbackModal" style="width: 100%">
                 Give Feedback
               </button>
             </div>
           </div>
 
           <div class="col-sm-7 col">
-            <div class="feedbacks custom-scrollbar" style=" height: 85vh; overflow: scroll;">
-              
-                <div class="container-fluid" id="book-feedback" >
+            <div
+              class="feedbacks custom-scrollbar"
+              style="height: 85vh; overflow: scroll"
+            >
+              <div class="container-fluid" id="book-feedback">
+                
+                <img src="../../Assets/User/Images/NoData.jpg" height="500px" width="500px" alt="">
 
-
-                    <div class="feedback" style="margin-top: 20px; margin-bottom: 70px;">
-                        <div class="profile d-flex justify-content-between">
-                          <div class="d-flex">
-                            <div class="user-img">
-                              <img height="21px" width="21px" src="../../Assets/User/Images/user.png" alt="" />
-                            </div>
-        
-                            <div class="text" style="margin-top: 8px;">
-                              <p class="user-name" >SpiderSena</p>
-                              <div class="rating"  style="font-size: 14px;">
-                                <span class="rating-count" style="color: black"
-                                  >2.5</span
-                                >
-                                <span class="fa fa-star" id="1"></span>
-                                <span class="fa fa-star" id="2"></span>
-                                <span class="fa fa-star" id="3"></span>
-                                <span class="fa fa-star" id="4"></span>
-                                <span class="fa fa-star" id="5"></span>
-                                <span style="font-size: 14px; color: black">(4)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="date">
-                            <p>15/06/2024</p>
-                          </div>
-                        </div>
-                        
-                        <div class="feedback-content" style="margin-top: 18px;">
-        
-                            <p class="feedback-heading" >Best Product</p>
-                            <p class="feedback-description" > Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unkno</p>
-        
-                        </div>
-                      </div>
-
-
-                 
-                      <div class="feedback" style="margin-top: 20px; margin-bottom: 70px;">
-                        <div class="profile d-flex justify-content-between">
-                          <div class="d-flex">
-                            <div class="user-img">
-                              <img height="21px" width="21px" src="../../Assets/User/Images/user.png" alt="" />
-                            </div>
-        
-                            <div class="text" style="margin-top: 8px;">
-                              <p class="user-name" >SpiderSena</p>
-                              <div class="rating" style="font-size: 14px;">
-                                <span class="rating-count" style="color: black"
-                                  >2.5</span
-                                >
-                                <span class="fa fa-star" id="1"></span>
-                                <span class="fa fa-star" id="2"></span>
-                                <span class="fa fa-star" id="3"></span>
-                                <span class="fa fa-star" id="4"></span>
-                                <span class="fa fa-star" id="5"></span>
-                                <span style="font-size: 14px; color: black">(4)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="date">
-                            <p>15/06/2024</p>
-                          </div>
-                        </div>
-                        
-                        <div class="feedback-content" style="margin-top: 18px;">
-        
-                            <p class="feedback-heading" >Best Product</p>
-                            <p class="feedback-description" > Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unkno</p>
-        
-                        </div>
-                      </div>
-
-
-                      <div class="feedback" style="margin-top: 20px; margin-bottom: 70px;">
-                        <div class="profile d-flex justify-content-between">
-                          <div class="d-flex">
-                            <div class="user-img">
-                              <img height="21px" width="21px" src="../../Assets/User/Images/user.png" alt="" />
-                            </div>
-        
-                            <div class="text" style="margin-top: 8px;">
-                              <p class="user-name" >SpiderSena</p>
-                              <div class="rating" style="font-size: 14px;">
-                                <span class="rating-count" style="color: black"
-                                  >2.5</span
-                                >
-                                <span class="fa fa-star" id="1"></span>
-                                <span class="fa fa-star" id="2"></span>
-                                <span class="fa fa-star" id="3"></span>
-                                <span class="fa fa-star" id="4"></span>
-                                <span class="fa fa-star" id="5"></span>
-                                <span style="font-size: 14px; color: black">(4)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="date">
-                            <p>15/06/2024</p>
-                          </div>
-                        </div>
-                        
-                        <div class="feedback-content" style="margin-top: 18px;">
-        
-                            <p class="feedback-heading" >Best Product</p>
-                            <p class="feedback-description" > Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unkno</p>
-        
-                        </div>
-                      </div>
-
-
-                      <div class="feedback" style="margin-top: 20px; margin-bottom: 70px;">
-                        <div class="profile d-flex justify-content-between">
-                          <div class="d-flex">
-                            <div class="user-img">
-                              <img height="21px" width="21px" src="../../Assets/User/Images/user.png" alt="" />
-                            </div>
-        
-                            <div class="text" style="margin-top: 8px;">
-                              <p class="user-name" >SpiderSena</p>
-                              <div class="rating" style="font-size: 14px;">
-                                <span class="rating-count" style="color: black"
-                                  >2.5</span
-                                >
-                                <span class="fa fa-star" id="1"></span>
-                                <span class="fa fa-star" id="2"></span>
-                                <span class="fa fa-star" id="3"></span>
-                                <span class="fa fa-star" id="4"></span>
-                                <span class="fa fa-star" id="5"></span>
-                                <span style="font-size: 14px; color: black">(4)</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="date">
-                            <p>15/06/2024</p>
-                          </div>
-                        </div>
-                        
-                        <div class="feedback-content" style="margin-top: 18px;">
-        
-                            <p class="feedback-heading" >Best Product</p>
-                            <p class="feedback-description" > Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unkno</p>
-        
-                        </div>
-                      </div>
-
-
-                      
-
-                      
-
-
-
-                </div>
-
-
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div
+                    class="modal fade"
+                    id="giveFeedbackModal"
+                    tabindex="-1"
+                    aria-labelledby="addAuthorModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addAuthorModalLabel">
+                           Give Feedback
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="newAuthorName" class="form-label"
+                                >Rating</label
+                              >
+                              <div class="feedback-rating">
+                                <span class="rating-count" id="giveRatingStar" style="color: black">1.0</span>
+                                <span class="fa fa-star-o" id="1" onclick="giveFeedbackRating(1)"></span>
+                                <span class="fa fa-star-o" id="2" onclick="giveFeedbackRating(2)"></span>
+                                <span class="fa fa-star-o" id="3" onclick="giveFeedbackRating(3)"></span>
+                                <span class="fa fa-star-o" id="4" onclick="giveFeedbackRating(4)"></span>
+                                <span class="fa fa-star-o" id="5" onclick="giveFeedbackRating(5)"></span>
+                               
+                              </div>
+                            </div>
+                            <div class="mb-3">
+                              <label for="authorPhone" class="form-label"
+                                >Heading</label
+                              >
+                              <input
+                                type="tel"
+                                class="form-control"
+                                id="Heading"
+                                onblur="validateText('Heading')"
+                                required
+                              />
+                              <small id="HeadingHelp"></small>
+                            </div>
+                            <div class="mb-3">
+                              <label for="authorAddress" class="form-label"
+                                >Description</label
+                              >
+                              <textarea
+                                class="form-control"
+                                id="Description"
+                                rows="3"
+                                onblur="validateText('Description')"
+                                required
+                              ></textarea>
+                              <small id="DescriptionHelp"></small>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                          <button
+                            id="AddAuhtorBtn"
+                            type="button"
+                            class="btn btn-primary"
+                            onclick="giveFeedback()"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
 
     <!-- Include Bootstrap JavaScript -->
     <script
@@ -408,7 +290,7 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
-
-    <script src="../../Assets/User/Javascript/BookDetail.js"  ></script>
+    <script src="../../Assets/User/Javascript/toastify-js-master/src/toastify.js"></script>
+    <script src="../../Assets/User/Javascript/BookDetail.js"></script>
   </body>
 </html>

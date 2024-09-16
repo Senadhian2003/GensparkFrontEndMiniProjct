@@ -6,7 +6,7 @@
     <title>Athena - Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="../../Assets/Admin/Css/Admin.css" />  
+    <link rel="stylesheet" href="../../Assets/User/Css/styles.css" />  
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -23,7 +23,7 @@
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
+            
             width: 300px;
         }
         .logo {
@@ -58,23 +58,42 @@
         .register-btn {
             background-color: #4285F4;
         }
+
+        input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+
+
     </style>
 </head>
 <body>
     <div class="login-container">
-        <a class="navbar-brand d-flex" style="margin-top: 8px" href="#">
-            <img src="../../Assets/User/Images/Athena.avif" style="height: 40px;" alt="Logo" />
-            <p
-              class="poppins-semibold"
-              style="margin-left: 10px; color: black; font-size: 26px"
-            >
-              Athena
-            </p>
-          </a>
+        <div class="logo" style="text-align: center;width: 100%; margin-left: auto; margin-right: auto;">
+            <a  class="navbar-brand d-flex" style="margin-top: 8px" href="Home.html">
+                <img src="../../Assets/User/Images/Athena.avif" style="height: 40px;" alt="Logo" />
+                <p
+                  class="poppins-semibold"
+                  style="margin-left: 10px; color: black; font-size: 26px"
+                >
+                  Athena
+                </p>
+              </a>
+        </div>
         <form>
-            <input type="text" placeholder="User ID" id="user-id" required>
-            <input type="password" placeholder="Password" id="user-password" required>
-            <button type="submit" class="login-btn" id="login-btn">Login</button>
+            <small style="" id="idHelp" ></small>
+            <input type="number" placeholder="User ID" id="user-id" onblur="validateUserId()" pattern="[0-9]*" inputmode="numeric" required>
+            <small style="" id="passwordHelp" ></small>
+            <input type="password" placeholder="Password" onblur="validatePassword()" id="user-password" required>
+            <button type="button" class="login-btn" id="login-btn">Login</button>
         </form>
         <button onclick="location.href='register.html'" class="register-btn">Register</button>
     </div>
@@ -82,5 +101,12 @@
 
 <script src="../../Assets/User/Javascript/login.js"></script>
 
+<script src="../../Assets/User/Javascript/toastify-js-master/src/toastify.js"></script>
+
+<script>
+
+
+
+</script>
 
 </html>

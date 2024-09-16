@@ -4,6 +4,54 @@ let allFine = []; // Store all Fines data
 let filteredFine = []; // Store filtered Fine data
 
 
+function  Toast(message){
+
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+     })
+     myToast.showToast();
+
+}
+
+
+const userToken = localStorage.getItem('token')
+const userRole = localStorage.getItem('userRole')
+
+
+if(!userToken){
+  Toast("Login Requited")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+if(userRole!="Admin"){
+  Toast("Unauthorized access....")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
 fetch(`http://localhost:5022/api/Fine/ViewAllFines`,{
   method : "GET"
 }).then(res=> res.json())
@@ -162,8 +210,17 @@ let createRows = (arr)=>{
                                   <td>${rentDetail.bookId}</td> 
                                   <td>${rentDetail.fineAmount}</td>
                                   <td class="text-center" >${rentDetail.finePaidDate? rentDetail.finePaidDate.slice(0,10):'-'}</td>
-                                  <td><p  class="success">${rentDetail.status}</p></td>
-                                </tr>`
+                                 `
+
+                                 if(rentDetail.status == "Fine paid"){
+                                  rentDetailHtmlContent+=` <td><p class="success">${rentDetail.status}</p></td>`
+                                }
+                                else{
+                                   rentDetailHtmlContent+=` <td><p style="cursor : pointer" onclick="payFine(${element.fineId}, ${rentDetail.bookId})" class="danger">${rentDetail.status}</p></td>`
+                                }
+                            
+                  rentDetailHtmlContent+=`</tr>`
+                                
 
         });
 

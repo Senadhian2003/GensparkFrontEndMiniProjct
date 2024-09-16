@@ -67,7 +67,7 @@ body{
 
 
   .landing-page {
-    background-image: url('../../Images/HomeBackground.png');
+    background-image: url('../Images/HomeBackground.png');
     background-position: top right;
     background-repeat: no-repeat;
     background-size: contain;
@@ -365,7 +365,7 @@ div.features{
 
 }
 
-.rating {
+.rating,.feedback-rating {
   font-size: 18px;
   margin-bottom: 2%;
   color: #de7921;
@@ -684,6 +684,34 @@ div.features{
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+
+.toastify {
+  padding: 12px 20px;
+  color: #ffffff;
+  display: inline-block;
+  box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+  background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
+  background: linear-gradient(135deg, #73a5ff, #5477f5);
+  position: fixed;
+  top: -150px;
+  right: 15px;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 1;
+}
+.toastify.on { opacity: 1; }
+
+
+
+
+
+
+
+
 
 
 // Mobile responsive

@@ -1,5 +1,53 @@
 console.log("Add new Book Page")
 
+
+function  Toast(message){
+
+    var myToast = Toastify({
+        text: message,
+        duration: 1000
+       })
+       myToast.showToast();
+  
+  }
+  
+  
+  const userToken = localStorage.getItem('token')
+  const userRole = localStorage.getItem('userRole')
+  
+  
+  if(!userToken){
+    Toast("Login Requited")
+    setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+  }
+  
+  
+  if(userRole!="Admin"){
+    Toast("Unauthorized access....")
+    setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+  }
+  
+  
+  
+  
+  
+  
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    Toast("Logged out successfully");
+    setTimeout(() => {
+        window.location.href = '../User/login.html';
+    }, 1500); // Redirect after 1.5 seconds
+  }
+  
+  
+
+
 let populateAuthorsList = (authors) => {
     const authorsList = document.getElementById('authorList');
     authors.forEach(author => {
@@ -106,7 +154,8 @@ AddAuthorBtn.addEventListener('click',()=>{
                 return res.json()
             }).then((data)=>{
                 console.log(data)
-                alert("Author added successfully")
+                Toast("Author added successfully")
+                // alert("Author added successfully")
                 clearAuthorForm()
                 addAuthorModal.hide();
                 get_authors()
@@ -115,7 +164,8 @@ AddAuthorBtn.addEventListener('click',()=>{
 
     }
     else{
-        alert("Please enter all the details.")
+        // alert("Please enter all the details.")
+        Toast("Please enter all the details.")
     }
 
 
@@ -154,7 +204,8 @@ AddPublisherBtn.addEventListener('click',()=>{
                 return res.json()
             }).then((data)=>{
                 console.log(data)
-                alert("Publisher added successfully")
+                // alert("Publisher added successfully")
+                Toast("Publisher added successfully")
                 clearPublisherForm()
                 addPublisherModal.hide();
                 get_publishers();
@@ -163,7 +214,8 @@ AddPublisherBtn.addEventListener('click',()=>{
 
     }
     else{
-        alert("Please enter all the details.")
+        // alert("Please enter all the details.")
+        Toast("Please enter all the details.")
     }
 
 
@@ -337,6 +389,7 @@ let validatePublisherName = () =>{
     if (!name) {
         validationMessage.textContent = "Publisher Name cannot be empty";
         validationMessage.style.color = "red";
+        return false
     }
     else if (containsNumbers.test(name)) {
 validationMessage.textContent = "Publisher Name cannot contain numbers";
@@ -486,17 +539,21 @@ AddBookBtn.addEventListener('click',(e)=>{
             return res.json();
         }).then((data) => {
             console.log(data);
-            alert("Book added successfully");
+            // alert("Book added successfully");
+            Toast("Book added successfully");
+
             clearBookForm();
         }).catch((error) => {
             console.error('Error:', error);
-            alert("Failed to add book. Please try again.");
+            // alert("Failed to add book. Please try again.");
+            Toast("Failed to add book. Please try again.");
         });
 
 
     }
     else{
-        alert("Please enter all the details.")
+        // alert("Please enter all the details.")
+        Toast("Please enter all the details.")
     }
 
 

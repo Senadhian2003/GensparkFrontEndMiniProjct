@@ -1,5 +1,53 @@
 console.log("Customer page")
 
+
+function  Toast(message){
+
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+     })
+     myToast.showToast();
+
+}
+
+
+const userToken = localStorage.getItem('token')
+const userRole = localStorage.getItem('userRole')
+
+
+if(!userToken){
+  Toast("Login Requited")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+if(userRole!="Admin"){
+  Toast("Unauthorized access....")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
 let allCustomers = []
 let filteredCustomers = []
 let currentPage = 1;
@@ -98,16 +146,24 @@ let createRows = (arr)=>{
                         aria-expanded="false"
                         aria-controls="collapseOne"
                       >
-                        <td>${index+1}</td>
+                        <td>${element.id}</td>
 
                         <td>${element.name}</td>
                         <td class="">${element.phone}</td>
-                        <td class="">${element.role}</td>
+                        <td class="">${element.role}</td>`
 
-                        <td class=""> <p class="success">Active</p></td>
+                        if(element.status == "Active"){
+
+                          htmlStringContent+=` <td class=""> <p class="success">Active</p></td> </tr>`
+                        }
+                        else{
+                          htmlStringContent+=` <td class=""> <p class="danger">Disabled</p></td> </tr>`
+                     
+                        }
+                       
 
                         
-                      </tr>`
+                 
 
 
     });
@@ -120,7 +176,45 @@ let createRows = (arr)=>{
     document.querySelectorAll('#customer-detail tbody tr').forEach(row => {
         row.addEventListener('click', function() {
           const userId = this.getAttribute('data-id');
-          window.location.href = `${this.getAttribute('data-href')}?userId=${userId}`;
+
+          fetch(`http://localhost:5022/api/UserValidation/ValidateUser?UserId=${userId}`,{
+
+            method : "POST",
+            headers : {
+              'Content-Type' : 'application/json'
+            },
+
+          })
+          .then(async(res)=> {
+        
+            if (!res.ok) {
+              // For other error statuses, parse the error response
+              const errorData = await res.json();
+              throw errorData;
+          }
+            
+            return res.json()
+          
+          })
+          .then((data)=>{
+      
+            console.log(data)
+        
+            
+            Toast(data.status)
+            setTimeout(() => {
+              window.location.href = `${this.getAttribute('data-href')}?userId=${userId}`;
+          }, 1500); // Redirect after 1.5 seconds
+          
+          })
+          .catch((err)=>{
+            console.log(err)
+            Toast(err.message);
+            // createErrorRow(err.message)
+          
+          })
+
+          
         });
       });
    

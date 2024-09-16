@@ -1,5 +1,53 @@
 const bookTitles = ["Sherlock Holmes", "Ben 10", "Learning React", "Harry Potter", "The Great Gatsby", "Pride and Prejudice"];
 
+
+function  Toast(message){
+
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+     })
+     myToast.showToast();
+
+}
+
+
+const userToken = localStorage.getItem('token')
+const userRole = localStorage.getItem('userRole')
+
+
+if(!userToken){
+  Toast("Login Requited")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+if(userRole!="Admin"){
+  Toast("Unauthorized access....")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
 // Fetch data for select(Book names and id)
 let books = []
 let fetchBooks = ()=>{

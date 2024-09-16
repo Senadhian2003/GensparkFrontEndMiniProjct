@@ -1,5 +1,53 @@
 console.log("Purchase page")
 
+
+function  Toast(message){
+
+  var myToast = Toastify({
+      text: message,
+      duration: 1000
+     })
+     myToast.showToast();
+
+}
+
+
+const userToken = localStorage.getItem('token')
+const userRole = localStorage.getItem('userRole')
+
+
+if(!userToken){
+  Toast("Login Requited")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+if(userRole!="Admin"){
+  Toast("Unauthorized access....")
+  setTimeout(() => {
+    window.location.href = '../User/login.html';
+}, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
+
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userRole');
+  Toast("Logged out successfully");
+  setTimeout(() => {
+      window.location.href = '../User/login.html';
+  }, 1500); // Redirect after 1.5 seconds
+}
+
+
+
+
 let allPurchases = []
 let filteredPurchases = []
 let currentPage = 1;
@@ -158,11 +206,11 @@ let createRows = (arr)=>{
         rentDetailList.forEach(rentDetail => {
             console.log(rentDetail)
             rentDetailHtmlContent+=`<tr>
-                                  <td>01</td>
-                                  <td>Sherlock Holmes</td>
-                                  <td class="text-center">20</td>
-                                  <td class="text-center">8</td>
-                                  <td class="text-center">160</td>
+                                  <td>${rentDetail.book.id}</td>
+                                  <td>${rentDetail.book.title}</td>
+                                  <td class="text-center">${rentDetail.pricePerBook}</td>
+                                  <td class="text-center">${rentDetail.quantity}</td>
+                                  <td class="text-center">${rentDetail.totalPrice }</td>
                                 </tr>`
 
         });
@@ -204,7 +252,7 @@ fetch(`http://localhost:5022/api/Purchase/ViewPurchases`,{
     filteredPurchases = [...data]
     applyFilters();
 }).catch((err)=>{
-    console.log(err.message)
+    console.log(err)
     // createErrorRow(err.message)
 
 })
